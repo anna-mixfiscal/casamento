@@ -549,7 +549,7 @@ body.admin .hero, body.admin main, body.admin footer { display: none; }
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 import {
-  getFirestore, collection, doc, getDoc, onSnapshot, addDoc, updateDoc, deleteDoc, writeBatch, serverTimestamp
+  getFirestore, collection, doc, getDoc, setDoc, onSnapshot, addDoc, updateDoc, deleteDoc, writeBatch, serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 // Configuração pública do projeto no Firebase (não é senha: quem protege os dados são as regras do banco).
@@ -629,6 +629,15 @@ async function idFor(key) {
     return null;
   }
 
+  // Convite que já respondeu: mostra a resposta registrada e não deixa responder de novo.
+  function showLocked(r, ja) {
+    const em = toDate(ja.em);
+    const quando = em && !isNaN(em) ? ` em ${fmtDate(em)}` : "";
+    const vai = ja.vai || [];
+    const quem = vai.length ? `Presença confirmada para: ${vai.join(", ")}.` : "A resposta foi que ninguém poderá comparecer.";
+    showErr(`${r.f} já respondeu${quando}. ${quem} Para mudar algo, fale com os noivos.`);
+  }
+
   async function search() {
     if (busy) return;
     const name = $("c-name").value;
@@ -645,7 +654,11 @@ async function idFor(key) {
       showErr("Nome não localizado. Confira se escreveu como está no convite ou fale com os noivos.");
       return;
     }
-    fails = 0; invite = r;
+    fails = 0;
+    let ja = null;
+    try { const rs = await getDoc(doc(db, "respostas", r.c)); if (rs.exists()) ja = rs.data(); } catch (_) {}
+    if (ja) { showLocked(r, ja); return; }
+    invite = r;
     $("r-greet").textContent = `${r.f}, confirme quem poderá comparecer:`;
     const box = $("r-people"); box.textContent = "";
     r.n.forEach((p, i) => {
@@ -673,13 +686,19 @@ async function idFor(key) {
     const nao = invite.n.filter(p => !vai.includes(p));
     sending = true; refresh(); sendBtn.textContent = "Enviando…";
     try {
-      await addDoc(collection(db, "respostas"), { c: invite.c, vai, nao, por: invite.p, em: serverTimestamp() });
+      await setDoc(doc(db, "respostas", invite.c), { c: invite.c, vai, nao, por: invite.p, em: serverTimestamp() });
       $("r-status").textContent = going ? "Presença confirmada! Obrigado, esperamos você." : "Resposta enviada. Obrigado por avisar.";
       $("found").hidden = true; invite = null; $("c-name").value = "";
-    } catch (_) {
+    } catch (ex) {
       $("r-status").textContent = "";
-      $("r-err").textContent = "Não foi possível enviar agora. Confira sua internet e tente de novo.";
-      $("r-err").hidden = false;
+      if (ex && ex.code === "permission-denied") {
+        $("found").hidden = true;
+        showErr(`${invite.f} já respondeu. Para mudar algo, fale com os noivos.`);
+        invite = null;
+      } else {
+        $("r-err").textContent = "Não foi possível enviar agora. Confira sua internet e tente de novo.";
+        $("r-err").hidden = false;
+      }
     }
     sending = false; sendBtn.textContent = "Confirmar presença"; refresh();
   });
@@ -687,7 +706,7 @@ async function idFor(key) {
 
 // ---------- Área dos noivos ----------
 (function painel() {
-  let docs = [], filter = "todos", unsubs = [], started = false;
+  let docs = [], filter = "todos", unsubs = [], started = false, respostas = {};
   const queues = {};
 
   function route() {
@@ -757,7 +776,10 @@ async function idFor(key) {
     }, onErr));
     // Respostas enviadas pelos convidados: aplica no convite e apaga a resposta.
     unsubs.push(onSnapshot(collection(db, "respostas"), snap => {
-      snap.docChanges().forEach(ch => { if (ch.type === "added" && !ch.doc.metadata.hasPendingWrites) applyResposta(ch.doc.id, ch.doc.data()); });
+      respostas = {};
+      snap.docs.forEach(d => { respostas[d.id] = d.data(); });
+      snap.docs.forEach(d => { const r = d.data(); if (!r.aplicada && !d.metadata.hasPendingWrites) applyResposta(d.id, r); });
+      if (started) render();
     }, () => {}));
   }
 
@@ -777,7 +799,7 @@ async function idFor(key) {
         (r.nao || []).forEach(n => set(n, "nao"));
         batch.update(ref, { pessoas, respondidoPor: r.por || "", respondidoEm: r.em || serverTimestamp(), origem: "site" });
       }
-      batch.delete(doc(db, "respostas", id));
+      batch.update(doc(db, "respostas", id), { aplicada: true });
       await batch.commit();
       if (snap.exists()) toast(`Nova resposta: ${snap.data().nome}`);
     } catch (_) { applying.delete(id); }
@@ -892,6 +914,12 @@ async function idFor(key) {
       el("label", { textContent: "Nome do convite" }, nameIn),
       el("label", { textContent: "Pessoas (uma por linha)" }, pplIn),
       editErr, el("div", { className: "btns" }, saveP));
+    let unlock = null;
+    if (respostas[inv.id]) {
+      unlock = el("button", { type: "button", className: "btn small", textContent: "Liberar nova resposta" });
+      unlock.title = "O convite já respondeu pelo site. Liberar deixa responder de novo.";
+      unlock.onclick = () => write(inv.id, () => deleteDoc(doc(db, "respostas", inv.id))).then(() => toast("Convite liberado para responder de novo."));
+    }
     const del = el("button", { type: "button", className: "btn small danger", textContent: "Excluir convite" });
     let armed = false, armTimer;
     del.onclick = () => {
@@ -900,6 +928,7 @@ async function idFor(key) {
       write(inv.id, async () => {
         const batch = writeBatch(db);
         (inv.chaves || []).forEach(x => batch.delete(doc(db, "busca", x)));
+        if (respostas[inv.id]) batch.delete(doc(db, "respostas", inv.id));
         batch.delete(doc(db, "convites", inv.id));
         await batch.commit();
       }).then(() => toast("Convite excluído."));
@@ -909,7 +938,7 @@ async function idFor(key) {
       ppl,
       metaBits.length ? el("p", { className: "meta", textContent: metaBits.join(" · ") }) : null,
       el("details", {}, el("summary", { textContent: inv.notas ? "Notas: " + inv.notas.slice(0, 60) + (inv.notas.length > 60 ? "…" : "") : "Editar, notas e opções" }),
-        el("div", { className: "body" }, editBox, el("label", { className: "edit-ppl", textContent: "Notas" }, notes), el("div", { className: "btns" }, del))));
+        el("div", { className: "body" }, editBox, el("label", { className: "edit-ppl", textContent: "Notas" }, notes), el("div", { className: "btns" }, unlock, del))));
   }
 
   function cycle(id, i) {
