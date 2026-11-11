@@ -1,0 +1,966 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Anna & Douglas</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Figtree:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: uma coluna estreita, como um convite de manhã no campo; colinas de Sousas no topo, seções separadas por faixas de cor suave */
+:root {
+  --bg: #F5F6EF;
+  --paper: #FCFCF8;
+  --ink: #26301F;
+  --muted: #5E6957;
+  --line: #D9DDCC;
+  --olive: #56663F;
+  --sun: #D9A23A;
+  --sky: #C9D8DE;
+  --hill1: #B9C59E;
+  --hill2: #8E9D6C;
+  --hill3: #66764A;
+  --band: #ECEFE2;
+  --rust: #B4442E;
+  --display: "Bodoni Moda", "Didot", Georgia, serif;
+  --body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "DM Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #171B14; --paper: #1F241B; --ink: #ECEEE3; --muted: #A9B19C; --line: #353C2E;
+    --olive: #B4C58E; --sun: #E8B65A; --sky: #26323A; --hill1: #3A4530; --hill2: #2F3A26; --hill3: #24301D; --band: #1C2118;
+    --rust: #E58A72;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #171B14; --paper: #1F241B; --ink: #ECEEE3; --muted: #A9B19C; --line: #353C2E;
+  --olive: #B4C58E; --sun: #E8B65A; --sky: #26323A; --hill1: #3A4530; --hill2: #2F3A26; --hill3: #24301D; --band: #1C2118;
+  --rust: #E58A72;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { animation: none !important; transition: none !important; } }
+body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 16px; line-height: 1.6; }
+.wrap { max-width: 720px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+h1, h2, h3 { font-family: var(--display); font-weight: 400; text-wrap: balance; margin: 0; line-height: 1.1; }
+h2 { font-size: clamp(2rem, 6vw, 2.75rem); }
+h3 { font-size: 1.35rem; }
+p { margin: 0; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--sun); outline-offset: 3px; border-radius: 4px; }
+.eyebrow { font-family: var(--mono); font-size: .75rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+
+/* Navegação */
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+nav.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(6px); border-bottom: 1px solid var(--line); }
+nav.top .wrap { display: flex; gap: 4px 18px; overflow-x: auto; padding-block: 10px; scrollbar-width: none; }
+nav.top .wrap::-webkit-scrollbar { display: none; }
+nav.top a { white-space: nowrap; text-decoration: none; font-size: .875rem; color: var(--muted); padding: 4px 0; }
+nav.top a:hover { color: var(--ink); }
+nav.top a.owner-link { color: var(--olive); font-weight: 500; margin-left: auto; }
+nav.top .back-link { display: none; }
+body.admin nav.top a:not(.back-link) { display: none; }
+body.admin nav.top .back-link { display: inline; }
+
+/* Abertura */
+.hero { background: linear-gradient(var(--sky), var(--bg) 70%); overflow: hidden; }
+.hero .wrap { padding-block: 56px 0; text-align: center; display: grid; gap: 14px; justify-items: center; }
+.hero h1 { font-size: clamp(3.2rem, 14vw, 6.5rem); letter-spacing: -.01em; }
+.hero h1 em { font-style: italic; color: var(--olive); padding: 0 .08em; }
+.hero .date { font-family: var(--mono); font-size: 1.05rem; letter-spacing: .3em; }
+.hero .place { color: var(--muted); }
+.hills { display: block; width: 100%; height: auto; margin-top: 8px; }
+.sun { fill: var(--sun); }
+
+/* Contagem */
+.count { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; width: 100%; max-width: 460px; margin-top: 10px; }
+.count div { display: grid; gap: 2px; }
+.count b { font-family: var(--display); font-weight: 400; font-size: clamp(2rem, 9vw, 3rem); line-height: 1; font-variant-numeric: tabular-nums; }
+.count span { font-family: var(--mono); font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+
+section { padding-block: 64px; }
+section.alt { background: var(--band); }
+.head { display: grid; gap: 8px; margin-bottom: 28px; }
+.lede { color: var(--muted); max-width: 60ch; }
+.note { font-size: .82rem; color: var(--muted); font-style: italic; margin-top: 16px; }
+
+/* Local */
+.venue { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+.venue svg { display: block; width: 100%; height: auto; }
+.venue .info { padding: 20px; display: grid; gap: 14px; }
+.addr { font-size: 1.05rem; }
+.btns { display: flex; flex-wrap: wrap; gap: 10px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 11px 18px; border-radius: 999px; border: 1px solid var(--ink); text-decoration: none; font: 500 .95rem var(--body); background: transparent; color: var(--ink); cursor: pointer; }
+.btn.solid { background: var(--ink); color: var(--bg); }
+.btn:hover { opacity: .85; }
+.btn[disabled] { opacity: .45; cursor: not-allowed; }
+.btn svg { width: 18px; height: 18px; }
+
+/* Cronograma */
+.timeline { list-style: none; margin: 0; padding: 0; display: grid; }
+.timeline li { display: grid; grid-template-columns: 70px 18px 1fr; gap: 0 14px; }
+.timeline time { font-family: var(--mono); font-size: .95rem; padding-top: 2px; font-variant-numeric: tabular-nums; }
+.timeline .dot { position: relative; }
+.timeline .dot::before { content: ""; position: absolute; left: 50%; top: 8px; width: 10px; height: 10px; margin-left: -5px; border-radius: 50%; background: var(--olive); }
+.timeline .dot::after { content: ""; position: absolute; left: 50%; top: 22px; bottom: -6px; width: 1px; background: var(--line); }
+.timeline li:last-child .dot::after { display: none; }
+.timeline .what { padding-bottom: 26px; min-width: 0; }
+.timeline .what strong { font-weight: 600; display: block; }
+.timeline .what span { color: var(--muted); font-size: .92rem; }
+.timeline li.key .dot::before { background: var(--sun); width: 14px; height: 14px; margin-left: -7px; top: 6px; }
+
+/* Dress code */
+.dress { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+.dress article { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 22px; display: grid; gap: 12px; align-content: start; min-width: 0; }
+.dress .tag { font-family: var(--mono); font-size: .8rem; color: var(--olive); }
+.dress ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; }
+.swatches { display: flex; flex-wrap: wrap; gap: 10px; }
+.sw { display: grid; gap: 4px; justify-items: center; font-size: .72rem; color: var(--muted); }
+.sw i { width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--line); display: block; }
+
+/* Menu */
+.menu { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 32px 24px; display: grid; gap: 28px; text-align: center; }
+.menu .course { display: grid; gap: 8px; }
+.menu .course h3 { font-style: italic; color: var(--olive); }
+.menu ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.menu li small { display: block; color: var(--muted); font-size: .82rem; }
+.menu hr { border: 0; border-top: 1px solid var(--line); width: 60px; margin: 0 auto; }
+
+/* RSVP */
+form { display: grid; gap: 18px; background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 24px; }
+.field { display: grid; gap: 6px; min-width: 0; }
+.row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 18px; }
+label, legend { font-weight: 500; font-size: .92rem; }
+input[type=text], input[type=number], input[type=search], input[type=email], input[type=password], textarea { width: 100%; font: inherit; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; }
+textarea { min-height: 84px; resize: vertical; }
+fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: 8px; }
+.choices { display: flex; flex-wrap: wrap; gap: 10px; }
+.choice { position: relative; }
+.choice input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
+.choice span { display: inline-block; padding: 9px 16px; border: 1px solid var(--line); border-radius: 999px; background: var(--bg); }
+.choice input:checked + span { background: var(--olive); border-color: var(--olive); color: var(--paper); }
+.choice input:focus-visible + span { outline: 2px solid var(--sun); outline-offset: 2px; }
+.out { display: grid; gap: 10px; border-top: 1px dashed var(--line); padding-top: 18px; }
+.out pre { white-space: pre-wrap; word-break: break-word; font: .88rem/1.5 var(--mono); background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 14px; margin: 0; }
+.status { font-size: .88rem; color: var(--olive); min-height: 1.4em; }
+.err { color: var(--rust); font-size: .88rem; }
+.greet { display: grid; gap: 4px; }
+.greet h3 { font-size: 1.6rem; }
+.people { display: grid; gap: 8px; }
+.person { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+.person input { width: 18px; height: 18px; accent-color: var(--olive); }
+.search { display: flex; gap: 8px; }
+.search input { flex: 1; min-width: 0; }
+.found { display: grid; gap: 16px; border-top: 1px dashed var(--line); padding-top: 18px; }
+.found h3 { font-size: 1.5rem; }
+.person.none { color: var(--muted); font-size: .92rem; }
+
+footer { text-align: center; padding-block: 48px 64px; color: var(--muted); }
+footer .mono { font-family: var(--display); font-style: italic; font-size: 2rem; color: var(--ink); }
+footer .admin-link { display: inline-block; margin-top: 18px; font-family: var(--mono); font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+footer .admin-link:hover { color: var(--ink); }
+
+/* Área dos noivos */
+body.admin .hero, body.admin main, body.admin footer { display: none; }
+#noivos { padding-block: 40px 80px; }
+#noivos .head { margin-bottom: 24px; }
+.gate { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 32px 24px; display: grid; gap: 14px; justify-items: start; }
+.gate svg { width: 36px; height: 36px; color: var(--olive); }
+.gate p { color: var(--muted); max-width: 52ch; }
+.dash { display: grid; gap: 28px; }
+.stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+@media (min-width: 600px) { .stats { grid-template-columns: repeat(4, 1fr); } }
+.stat { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 16px; display: grid; gap: 4px; min-width: 0; }
+.stat b { font-family: var(--display); font-weight: 400; font-size: 2.4rem; line-height: 1; font-variant-numeric: tabular-nums; }
+.stat span { font-family: var(--mono); font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.stat.vai b { color: var(--olive); }
+.stat.nao b { color: var(--rust); }
+.bar { display: flex; height: 10px; border-radius: 999px; overflow: hidden; background: var(--line); }
+.bar i { display: block; height: 100%; }
+.bar .b-vai { background: var(--olive); }
+.bar .b-nao { background: var(--rust); }
+.summary { display: grid; gap: 10px; }
+.summary p { font-size: .92rem; color: var(--muted); }
+.summary p strong { color: var(--ink); font-weight: 600; }
+.tools { display: grid; gap: 12px; }
+.tool { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; }
+.tool > summary { cursor: pointer; list-style: none; padding: 16px 20px; font-weight: 500; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.tool > summary::-webkit-details-marker { display: none; }
+.tool > summary::after { content: "+"; font-family: var(--mono); color: var(--muted); font-size: 1.1rem; }
+.tool[open] > summary::after { content: "–"; }
+.tool .body { padding: 0 20px 20px; display: grid; gap: 12px; }
+.tool .hint { font-size: .85rem; color: var(--muted); }
+.preview { background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 14px; display: grid; gap: 6px; font-size: .92rem; }
+.preview strong { font-weight: 600; }
+.listhead { display: grid; gap: 12px; }
+.filters { display: flex; flex-wrap: wrap; gap: 8px; }
+.filters button { font: 500 .85rem var(--body); padding: 7px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--paper); color: var(--ink); cursor: pointer; }
+.filters button[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+.filters button span { font-family: var(--mono); font-size: .75rem; opacity: .7; margin-left: 4px; }
+.invs { display: grid; gap: 12px; }
+.inv { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; display: grid; gap: 12px; min-width: 0; }
+.inv-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 6px 12px; }
+.inv-head h3 { font-size: 1.3rem; min-width: 0; overflow-wrap: anywhere; }
+.pill { font-family: var(--mono); font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; padding: 3px 10px; border-radius: 999px; border: 1px solid currentColor; white-space: nowrap; }
+.pill.vai { color: var(--olive); }
+.pill.nao { color: var(--rust); }
+.pill.pend { color: var(--muted); }
+.ppl { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.pp { display: inline-flex; align-items: center; gap: 6px; font: .9rem var(--body); padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); cursor: pointer; text-align: left; }
+.pp::before { font-family: var(--mono); font-size: .8rem; width: 1em; text-align: center; }
+.pp[data-s="vai"] { border-color: var(--olive); background: color-mix(in srgb, var(--olive) 14%, var(--paper)); }
+.pp[data-s="vai"]::before { content: "✓"; color: var(--olive); }
+.pp[data-s="nao"] { border-color: color-mix(in srgb, var(--rust) 55%, var(--line)); color: var(--muted); text-decoration: line-through; text-decoration-color: color-mix(in srgb, var(--rust) 60%, transparent); }
+.pp[data-s="nao"]::before { content: "✕"; color: var(--rust); }
+.pp[data-s="pendente"]::before { content: "·"; color: var(--muted); }
+.meta { font-size: .82rem; color: var(--muted); }
+.inv details summary { cursor: pointer; font-size: .85rem; color: var(--muted); }
+.inv details .body { display: grid; gap: 10px; padding-top: 10px; }
+.inv details textarea { min-height: 64px; }
+.btn.small { padding: 7px 14px; font-size: .85rem; }
+.btn.danger { border-color: var(--rust); color: var(--rust); }
+.btn.danger.armed { background: var(--rust); color: var(--paper); }
+.empty { text-align: center; color: var(--muted); padding: 28px 16px; border: 1px dashed var(--line); border-radius: 14px; }
+.toast { position: fixed; left: 50%; bottom: max(20px, env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--ink); color: var(--bg); padding: 10px 18px; border-radius: 999px; font-size: .9rem; z-index: 20; max-width: calc(100% - 32px); text-align: center; }
+.legend { font-size: .82rem; color: var(--muted); }
+.gate form { border: 0; padding: 0; background: none; width: 100%; max-width: 380px; }
+.who { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px 12px; font-size: .85rem; color: var(--muted); }
+.who button { font: 500 .85rem var(--body); background: none; border: 0; color: var(--ink); text-decoration: underline; cursor: pointer; padding: 4px 0; }
+.status.ok { font-size: 1rem; }
+.sitecard { background: var(--paper); border: 1px solid var(--line); border-left: 3px solid var(--olive); border-radius: 14px; padding: 18px 20px; display: grid; gap: 10px; }
+.sitecard.stale { border-left-color: var(--sun); }
+.sitehead { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 6px 12px; }
+.sitecard .hint { font-size: .85rem; color: var(--muted); }
+.pill.ok { color: var(--olive); }
+.pill.stale { color: var(--sun); }
+.edit-ppl { display: grid; gap: 8px; }
+.edit-ppl label { font-size: .85rem; }
+</style>
+</head>
+<body>
+
+<nav class="top" aria-label="Seções">
+  <div class="wrap">
+    <a href="#local">Local</a>
+    <a href="#cronograma">Cronograma</a>
+    <a href="#dresscode">Dress code</a>
+    <a href="#brunch">Menu do brunch</a>
+    <a href="#rsvp">Confirmar presença</a>
+    <a href="#noivos" class="owner-link" id="nav-owner" hidden>Área dos noivos</a>
+    <a href="#" class="back-link" id="nav-back">← Voltar ao convite</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Vamos nos casar</p>
+    <h1>Anna <em>&amp;</em> Douglas</h1>
+    <p class="date">14 · 08 · 2027</p>
+    <p class="place">Sábado de manhã · Sousas, Campinas – SP</p>
+    <div class="count" id="count" aria-live="off">
+      <div><b id="cd-d">–</b><span>dias</span></div>
+      <div><b id="cd-h">–</b><span>horas</span></div>
+      <div><b id="cd-m">–</b><span>min</span></div>
+      <div><b id="cd-s">–</b><span>seg</span></div>
+    </div>
+  </div>
+  <svg class="hills" viewBox="0 0 1200 220" preserveAspectRatio="none" aria-hidden="true">
+    <circle class="sun" cx="880" cy="110" r="46" opacity=".85"/>
+    <path fill="var(--hill1)" d="M0 150 C 150 90, 300 110, 430 130 S 700 70, 880 120 S 1100 100, 1200 120 L1200 220 L0 220 Z"/>
+    <path fill="var(--hill2)" d="M0 180 C 180 130, 360 160, 520 150 S 820 120, 1000 160 S 1150 150, 1200 155 L1200 220 L0 220 Z"/>
+    <path fill="var(--hill3)" d="M0 205 C 200 180, 420 200, 640 190 S 1000 175, 1200 195 L1200 220 L0 220 Z"/>
+    <path fill="var(--bg)" d="M0 214 C 300 206, 900 210, 1200 212 L1200 220 L0 220 Z"/>
+  </svg>
+</header>
+
+<main>
+  <section id="local">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">Onde</p>
+        <h2>O local</h2>
+        <p class="lede">A cerimônia e o brunch acontecem no mesmo lugar, em Sousas, distrito de Campinas. Recomendamos chegar com uns 20 minutos de antecedência.</p>
+      </div>
+      <div class="venue">
+        <svg viewBox="0 0 600 220" aria-hidden="true">
+          <rect width="600" height="220" fill="var(--band)"/>
+          <path d="M-10 160 C 90 120, 160 190, 260 150 S 420 90, 610 130" fill="none" stroke="var(--sky)" stroke-width="14" stroke-linecap="round"/>
+          <path d="M40 -10 L 120 230 M 0 70 L 610 40 M 330 -10 C 300 80, 360 140, 340 230" fill="none" stroke="var(--line)" stroke-width="6"/>
+          <g transform="translate(300 96)">
+            <circle r="34" fill="var(--sun)" opacity=".18"/>
+            <path d="M0 18 C -14 0, -16 -6, -16 -12 A16 16 0 0 1 16 -12 C 16 -6, 14 0, 0 18 Z" fill="var(--olive)"/>
+            <circle cy="-12" r="6" fill="var(--paper)"/>
+          </g>
+          <text x="300" y="150" text-anchor="middle" font-family="DM Mono, monospace" font-size="13" fill="var(--muted)" letter-spacing="2">SOUSAS · CAMPINAS</text>
+        </svg>
+        <div class="info">
+          <div>
+            <p class="eyebrow">Endereço</p>
+            <p class="addr" id="venue-name">Sousas, Campinas – SP</p>
+          </div>
+          <div class="btns">
+            <a class="btn solid" id="link-maps" href="https://www.google.com/maps/search/?api=1&amp;query=Sousas%2C%20Campinas%20-%20SP" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+              Abrir no Google Maps
+            </a>
+            <a class="btn" id="link-waze" href="https://waze.com/ul?q=Sousas%2C%20Campinas%20-%20SP&amp;navigate=yes" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 15c-1-1-1.5-2.5-1.5-4A8.5 8.5 0 0 1 20 9c1.6 3.6-.6 8-4.5 8.5H10"/><circle cx="8" cy="18.5" r="1.8"/><circle cx="16" cy="18.5" r="1.8"/><path d="M10 9.5h.01M15 9.5h.01M10 13c1.3 1 2.7 1 4 0"/></svg>
+              Ir com o Waze
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="cronograma" class="alt">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">Sábado, 14 de agosto</p>
+        <h2>Cronograma</h2>
+        <p class="lede">Uma manhã sem pressa, do sim ao último brinde.</p>
+      </div>
+      <ol class="timeline">
+        <li><time>10:00</time><i class="dot"></i><div class="what"><strong>Recepção dos convidados</strong><span>Água aromatizada e café passado na chegada.</span></div></li>
+        <li class="key"><time>10:30</time><i class="dot"></i><div class="what"><strong>Cerimônia</strong><span>Ao ar livre. Pedimos que estejam sentados alguns minutos antes.</span></div></li>
+        <li><time>11:15</time><i class="dot"></i><div class="what"><strong>Fotos e brinde de boas-vindas</strong><span>Espumante e sucos enquanto os noivos fazem as fotos com a família.</span></div></li>
+        <li class="key"><time>12:00</time><i class="dot"></i><div class="what"><strong>Brunch servido</strong><span>Confira o menu logo abaixo.</span></div></li>
+        <li><time>13:30</time><i class="dot"></i><div class="what"><strong>Corte do bolo</strong><span>Seguido do brinde dos padrinhos.</span></div></li>
+        <li><time>14:00</time><i class="dot"></i><div class="what"><strong>Música e pista</strong><span>Hora de dançar ao sol da tarde.</span></div></li>
+        <li><time>17:00</time><i class="dot"></i><div class="what"><strong>Encerramento</strong><span>Despedida dos noivos.</span></div></li>
+      </ol>
+      <p class="note">Horários de exemplo, ainda a confirmar.</p>
+    </div>
+  </section>
+
+  <section id="dresscode">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">O que vestir</p>
+        <h2>Dress code</h2>
+        <p class="lede">Agosto em Campinas costuma ter manhã fresca e sol forte ao meio-dia. Pense em camadas leves e calçados que andem bem na grama.</p>
+      </div>
+      <div class="dress">
+        <article>
+          <p class="tag">Convidados</p>
+          <h3>Passeio completo diurno</h3>
+          <ul>
+            <li>Vestidos midi ou longos fluidos, conjuntos de alfaiataria leve.</li>
+            <li>Terno sem gravata ou calça social com blazer.</li>
+            <li>Salto bloco, anabela ou sapatilha. Salto fino afunda na grama.</li>
+            <li>Leve um casaquinho para a manhã.</li>
+            <li>O branco e os tons de off-white ficam para a noiva.</li>
+          </ul>
+        </article>
+        <article>
+          <p class="tag">Padrinhos e madrinhas</p>
+          <h3>Na paleta do casamento</h3>
+          <ul>
+            <li>Madrinhas: vestido longo em um dos tons abaixo, modelo livre.</li>
+            <li>Padrinhos: terno em cinza claro ou bege, camisa branca, gravata verde-oliva.</li>
+            <li>Sapato marrom ou caramelo.</li>
+          </ul>
+          <div class="swatches" aria-label="Paleta dos padrinhos">
+            <div class="sw"><i style="background:#9DAA83"></i>sálvia</div>
+            <div class="sw"><i style="background:#5F6E45"></i>oliva</div>
+            <div class="sw"><i style="background:#E2C27A"></i>manteiga</div>
+            <div class="sw"><i style="background:#A9BFCB"></i>céu</div>
+            <div class="sw"><i style="background:#C9B9A1"></i>areia</div>
+          </div>
+        </article>
+      </div>
+      <p class="note">Sugestão inicial de traje e paleta, para os noivos ajustarem.</p>
+    </div>
+  </section>
+
+  <section id="brunch" class="alt">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">À mesa</p>
+        <h2>Menu do brunch</h2>
+      </div>
+      <div class="menu">
+        <div class="course">
+          <h3>Para começar</h3>
+          <ul>
+            <li>Pão de queijo mineiro saído do forno</li>
+            <li>Tábua de frutas da estação<small>morango, mexerica, mamão e uva</small></li>
+            <li>Iogurte natural com granola da casa e mel</li>
+          </ul>
+        </div>
+        <hr>
+        <div class="course">
+          <h3>Do forno e da chapa</h3>
+          <ul>
+            <li>Ovos mexidos cremosos com ervas</li>
+            <li>Quiche de alho-poró e queijo canastra</li>
+            <li>Croissant com presunto cru e queijo brie</li>
+            <li>Panqueca americana com frutas vermelhas<small>opção vegetariana</small></li>
+          </ul>
+        </div>
+        <hr>
+        <div class="course">
+          <h3>Doces</h3>
+          <ul>
+            <li>Bolo dos noivos</li>
+            <li>Bolo de fubá com goiabada</li>
+            <li>Mini churros com doce de leite</li>
+          </ul>
+        </div>
+        <hr>
+        <div class="course">
+          <h3>Para beber</h3>
+          <ul>
+            <li>Café especial da Mantiqueira</li>
+            <li>Sucos naturais: laranja, verde e melancia com hortelã</li>
+            <li>Mimosa e espumante</li>
+          </ul>
+        </div>
+      </div>
+      <p class="note">Cardápio de exemplo, a ser substituído pelo menu do buffet.</p>
+    </div>
+  </section>
+
+  <section id="rsvp">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">Responda até 14 de julho de 2027</p>
+        <h2>Confirme sua presença</h2>
+        <p class="lede">Busque pelo seu nome e sobrenome, do jeito que está no convite. Sua resposta vai direto para os noivos.</p>
+      </div>
+      <form id="rsvp-form" novalidate>
+        <div class="field">
+          <label for="c-name">Seu nome e sobrenome</label>
+          <div class="search">
+            <input type="text" id="c-name" autocomplete="name" placeholder="Ex.: Gabriel Pereira">
+            <button class="btn" type="button" id="c-btn">Buscar</button>
+          </div>
+        </div>
+        <p class="err" id="c-err" role="alert" hidden></p>
+        <div id="found" class="found" hidden>
+          <h3 id="r-greet"></h3>
+          <div class="people" id="r-people"></div>
+          <label class="person none"><input type="checkbox" id="r-none"> Ninguém poderá comparecer</label>
+        </div>
+        <p class="err" id="r-err" role="alert" hidden>Marque quem vai, ou "Ninguém poderá comparecer".</p>
+        <div class="btns">
+          <button class="btn solid" type="submit" id="r-send" disabled>Confirmar presença</button>
+        </div>
+        <p class="status ok" id="r-status" role="status"></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<section id="noivos" hidden aria-labelledby="nv-title">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Área dos noivos</p>
+      <h2 id="nv-title">Lista de presença</h2>
+    </div>
+
+    <div class="gate" id="g-loading">
+      <p>Verificando acesso…</p>
+    </div>
+
+    <div class="gate" id="g-login" hidden>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg>
+      <h3>Área reservada aos noivos</h3>
+      <form id="lg-form" novalidate>
+        <div class="field"><label for="lg-email">E-mail</label><input type="email" id="lg-email" autocomplete="username"></div>
+        <div class="field"><label for="lg-pass">Senha</label><input type="password" id="lg-pass" autocomplete="current-password"></div>
+        <p class="err" id="lg-err" role="alert" hidden></p>
+        <div class="btns"><button class="btn solid" type="submit" id="lg-btn">Entrar</button></div>
+      </form>
+    </div>
+
+    <div class="gate" id="g-denied" hidden>
+      <h3>Esta conta não tem acesso</h3>
+      <p>Entre com o e-mail dos noivos.</p>
+      <button class="btn" type="button" id="g-out">Sair</button>
+    </div>
+
+    <div class="gate" id="g-error" hidden>
+      <h3>Não foi possível carregar os dados</h3>
+      <p id="g-error-msg">Tente recarregar a página em instantes.</p>
+    </div>
+
+    <div class="dash" id="dash" hidden>
+      <div class="who"><span id="who-email"></span><button type="button" id="who-out">Sair</button></div>
+      <div class="summary">
+        <div class="stats">
+          <div class="stat"><b id="s-total">0</b><span>convidados</span></div>
+          <div class="stat vai"><b id="s-vai">0</b><span>confirmados</span></div>
+          <div class="stat nao"><b id="s-nao">0</b><span>não vão</span></div>
+          <div class="stat"><b id="s-pend">0</b><span>aguardando</span></div>
+        </div>
+        <div class="bar" aria-hidden="true"><i class="b-vai" id="b-vai"></i><i class="b-nao" id="b-nao"></i></div>
+        <p id="s-line"></p>
+        <p class="err" id="d-note" role="status" hidden></p>
+      </div>
+
+      <div class="tools">
+        <details class="tool" id="t-new">
+          <summary>Novo convite</summary>
+          <div class="body">
+            <p class="hint">Um nome por linha. Se a pessoa estiver só com o primeiro nome, a busca usa o sobrenome do convite (ex.: "Gabriel" em "Família Pereira" é achado como "Gabriel Pereira"). As confirmações feitas no site aparecem aqui sozinhas.</p>
+            <div class="field"><label for="n-name">Nome do convite</label><input type="text" id="n-name" placeholder="Ex.: Família Pereira"></div>
+            <div class="field"><label for="n-ppl">Pessoas no convite</label><textarea id="n-ppl" rows="4" placeholder="Gabriel Pereira&#10;Ana Pereira"></textarea></div>
+            <p class="err" id="n-err" hidden></p>
+            <div class="btns"><button class="btn solid" type="button" id="n-save">Cadastrar</button></div>
+          </div>
+        </details>
+      </div>
+
+      <div class="listhead">
+        <div class="search"><input type="search" id="l-q" placeholder="Buscar convite ou pessoa" aria-label="Buscar convite ou pessoa"></div>
+        <div class="filters" role="group" aria-label="Filtrar convites">
+          <button type="button" data-f="todos" aria-pressed="true">Todos<span id="f-todos">0</span></button>
+          <button type="button" data-f="vai" aria-pressed="false">Confirmados<span id="f-vai">0</span></button>
+          <button type="button" data-f="nao" aria-pressed="false">Não vão<span id="f-nao">0</span></button>
+          <button type="button" data-f="pend" aria-pressed="false">Aguardando<span id="f-pend">0</span></button>
+        </div>
+        <p class="legend">Confirmações do site entram sozinhas. Para ajustar à mão, toque no nome: aguardando → vai → não vai.</p>
+      </div>
+
+      <div class="invs" id="l-list"></div>
+
+      <div class="btns" id="x-row" hidden><button class="btn" type="button" id="x-csv">Baixar lista (CSV)</button></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p class="mono">A &amp; D</p>
+    <p>14 de agosto de 2027 · Sousas, Campinas</p>
+    <a class="admin-link" href="#noivos">Área dos noivos</a>
+  </div>
+</footer>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import {
+  getFirestore, collection, doc, getDoc, onSnapshot, addDoc, updateDoc, deleteDoc, writeBatch, serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+// Configuração pública do projeto no Firebase (não é senha: quem protege os dados são as regras do banco).
+const firebaseConfig = {
+  apiKey: "AIzaSyAe2TOS_zt0DcaEvQwKZsqShv9LGBbpV0o",
+  authDomain: "casamento-anna-douglas.firebaseapp.com",
+  projectId: "casamento-anna-douglas",
+  storageBucket: "casamento-anna-douglas.firebasestorage.app",
+  messagingSenderId: "576593698430",
+  appId: "1:576593698430:web:9b15206a12c50038b3422f"
+};
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+const WEDDING = new Date("2027-08-14T10:30:00-03:00");
+const RSVP_DEADLINE = new Date("2027-07-14T23:59:00-03:00");
+const SALT = "casamento-anna-douglas-2027|";
+
+const $ = id => document.getElementById(id);
+const el = (tag, props, ...kids) => { const n = document.createElement(tag); Object.assign(n, props || {}); kids.flat().forEach(k => k != null && n.append(k)); return n; };
+const norm = s => (s || "").normalize("NFD").replace(/\p{M}/gu, "").toLowerCase().replace(/\s+/g, " ").trim();
+const fmtDate = d => { try { return d.toLocaleDateString("pt-BR", { day: "2-digit", month: "2-digit", year: "numeric" }); } catch (_) { return ""; } };
+const toDate = v => v && typeof v.toDate === "function" ? v.toDate() : (v ? new Date(v) : null);
+
+// ---------- Contagem regressiva ----------
+(function countdown() {
+  const els = ["d", "h", "m", "s"].map(k => $("cd-" + k));
+  const pad = n => String(n).padStart(2, "0");
+  function tick() {
+    let diff = Math.max(0, WEDDING - Date.now());
+    const d = Math.floor(diff / 864e5); diff -= d * 864e5;
+    const h = Math.floor(diff / 36e5); diff -= h * 36e5;
+    const m = Math.floor(diff / 6e4); diff -= m * 6e4;
+    const s = Math.floor(diff / 1e3);
+    els[0].textContent = d; els[1].textContent = pad(h); els[2].textContent = pad(m); els[3].textContent = pad(s);
+  }
+  tick(); setInterval(tick, 1000);
+})();
+
+// ---------- Chaves de busca ----------
+// Cada pessoa é achada pelo nome completo ou por nome + último sobrenome, sem acentos.
+// Sem sobrenome, usa o último nome do convite ("Gabriel" em "Família Pereira" vira "gabriel pereira").
+const PARTICULAS = new Set(["de", "da", "do", "das", "dos", "e"]);
+const FAMILIA = new Set(["familia", "fam", "casal", "convite"]);
+const tokens = s => (s || "").normalize("NFD").replace(/\p{M}/gu, "").toLowerCase().replace(/[^a-z\s]/g, " ").split(/\s+/).filter(w => w && !PARTICULAS.has(w));
+function keysFor(nome, conviteNome) {
+  let t = tokens(nome);
+  if (t.length < 2) {
+    const c = tokens(conviteNome).filter(w => !FAMILIA.has(w));
+    if (t.length === 1 && c.length && c[c.length - 1] !== t[0]) t = [t[0], c[c.length - 1]]; else return [];
+  }
+  return [...new Set([t.join(" "), t[0] + " " + t[t.length - 1]])];
+}
+async function idFor(key) {
+  const h = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(SALT + key));
+  return Array.from(new Uint8Array(h), x => x.toString(16).padStart(2, "0")).join("").slice(0, 40);
+}
+
+// ---------- Confirmação de presença (convidados) ----------
+(function rsvp() {
+  const form = $("rsvp-form"), sendBtn = $("r-send"), btn = $("c-btn");
+  let invite = null, fails = 0, lockUntil = 0, busy = false, sending = false;
+
+  const showErr = msg => { $("c-err").textContent = msg; $("c-err").hidden = !msg; };
+  const checked = () => [...$("r-people").querySelectorAll("input:checked")].map(i => i.value);
+  const refresh = () => { sendBtn.disabled = sending || !invite || (!checked().length && !$("r-none").checked); };
+  function reset() { invite = null; $("found").hidden = true; $("r-status").textContent = ""; $("r-err").hidden = true; refresh(); }
+
+  async function lookup(typed) {
+    const t = tokens(typed);
+    if (t.length < 2) return null;
+    for (const k of new Set([t.join(" "), t[0] + " " + t[t.length - 1]])) {
+      const snap = await getDoc(doc(db, "busca", await idFor(k)));
+      if (snap.exists()) return snap.data();
+    }
+    return null;
+  }
+
+  async function search() {
+    if (busy) return;
+    const name = $("c-name").value;
+    reset(); showErr("");
+    if (Date.now() < lockUntil) { showErr("Muitas buscas seguidas. Espere 30 segundos e tente de novo."); return; }
+    if (tokens(name).length < 2) { showErr("Escreva seu nome e sobrenome."); $("c-name").focus(); return; }
+    busy = true; btn.disabled = true; btn.textContent = "Buscando…";
+    let r = null, failed = false;
+    try { r = await lookup(name); } catch (_) { failed = true; }
+    busy = false; btn.disabled = false; btn.textContent = "Buscar";
+    if (failed) { showErr("Não foi possível buscar agora. Confira sua internet e tente de novo."); return; }
+    if (!r) {
+      if (++fails >= 5) { lockUntil = Date.now() + 30000; fails = 0; }
+      showErr("Nome não localizado. Confira se escreveu como está no convite ou fale com os noivos.");
+      return;
+    }
+    fails = 0; invite = r;
+    $("r-greet").textContent = `${r.f}, confirme quem poderá comparecer:`;
+    const box = $("r-people"); box.textContent = "";
+    r.n.forEach((p, i) => {
+      const l = el("label", { className: "person" });
+      const cb = el("input", { type: "checkbox", value: p, id: "r-p" + i });
+      l.append(cb, document.createTextNode(" " + p)); box.append(l);
+    });
+    $("r-none").checked = false; $("found").hidden = false; refresh();
+  }
+
+  btn.addEventListener("click", search);
+  $("c-name").addEventListener("keydown", e => { if (e.key === "Enter") { e.preventDefault(); search(); } });
+  $("c-name").addEventListener("input", () => { if (invite || !$("c-err").hidden) { reset(); showErr(""); } });
+  form.addEventListener("change", e => {
+    if (e.target.id === "r-none" && e.target.checked) $("r-people").querySelectorAll("input").forEach(i => { i.checked = false; });
+    else if (e.target.closest && e.target.closest("#r-people") && e.target.checked) $("r-none").checked = false;
+    $("r-err").hidden = true; $("r-status").textContent = ""; refresh();
+  });
+
+  form.addEventListener("submit", async e => {
+    e.preventDefault();
+    if (!invite) { search(); return; }
+    const vai = checked(), going = vai.length > 0;
+    if (!going && !$("r-none").checked) { $("r-err").hidden = false; return; }
+    const nao = invite.n.filter(p => !vai.includes(p));
+    sending = true; refresh(); sendBtn.textContent = "Enviando…";
+    try {
+      await addDoc(collection(db, "respostas"), { c: invite.c, vai, nao, por: invite.p, em: serverTimestamp() });
+      $("r-status").textContent = going ? "Presença confirmada! Obrigado, esperamos você." : "Resposta enviada. Obrigado por avisar.";
+      $("found").hidden = true; invite = null; $("c-name").value = "";
+    } catch (_) {
+      $("r-status").textContent = "";
+      $("r-err").textContent = "Não foi possível enviar agora. Confira sua internet e tente de novo.";
+      $("r-err").hidden = false;
+    }
+    sending = false; sendBtn.textContent = "Confirmar presença"; refresh();
+  });
+})();
+
+// ---------- Área dos noivos ----------
+(function painel() {
+  let docs = [], filter = "todos", unsubs = [], started = false;
+  const queues = {};
+
+  function route() {
+    const on = location.hash === "#noivos";
+    document.body.classList.toggle("admin", on);
+    $("noivos").hidden = !on;
+    if (on) window.scrollTo(0, 0);
+  }
+  $("nav-back").addEventListener("click", e => { e.preventDefault(); history.pushState(null, "", location.pathname + location.search); route(); window.scrollTo(0, 0); });
+  addEventListener("hashchange", route);
+  route();
+
+  function gate(id) { ["g-loading", "g-login", "g-denied", "g-error", "dash"].forEach(g => { $(g).hidden = g !== id; }); }
+
+  let toastTimer;
+  function toast(msg) {
+    let t = document.querySelector(".toast");
+    if (!t) { t = el("div", { className: "toast", role: "status" }); document.body.append(t); }
+    t.textContent = msg; t.hidden = false;
+    clearTimeout(toastTimer); toastTimer = setTimeout(() => { t.hidden = true; }, 2600);
+  }
+
+  // Login
+  $("lg-form").addEventListener("submit", async e => {
+    e.preventDefault();
+    const err = $("lg-err"), b = $("lg-btn");
+    err.hidden = true;
+    const email = $("lg-email").value.trim(), pass = $("lg-pass").value;
+    if (!email || !pass) { err.textContent = "Preencha e-mail e senha."; err.hidden = false; return; }
+    b.disabled = true; b.textContent = "Entrando…";
+    try { await signInWithEmailAndPassword(auth, email, pass); $("lg-pass").value = ""; }
+    catch (ex) {
+      const c = ex && ex.code || "";
+      err.textContent = c.includes("too-many-requests") ? "Muitas tentativas. Espere alguns minutos e tente de novo."
+        : c.includes("network") ? "Sem conexão. Confira sua internet."
+        : "E-mail ou senha incorretos.";
+      err.hidden = false;
+    }
+    b.disabled = false; b.textContent = "Entrar";
+  });
+  const out = () => signOut(auth);
+  $("g-out").onclick = out; $("who-out").onclick = out;
+
+  onAuthStateChanged(auth, user => {
+    unsubs.forEach(u => u()); unsubs = []; docs = []; started = false;
+    $("nav-owner").hidden = !user;
+    if (!user) { gate("g-login"); return; }
+    $("who-email").textContent = user.email || "";
+    gate("g-loading");
+    start();
+  });
+
+  function start() {
+    const note = $("d-note");
+    const timer = setTimeout(() => { note.textContent = "Os dados estão demorando para carregar. Confira sua conexão."; note.hidden = false; }, 10000);
+    const onErr = ex => {
+      clearTimeout(timer);
+      if (ex && ex.code === "permission-denied") { gate("g-denied"); return; }
+      $("g-error-msg").textContent = "Tente recarregar a página em instantes.";
+      gate("g-error");
+    };
+    unsubs.push(onSnapshot(collection(db, "convites"), snap => {
+      clearTimeout(timer); note.hidden = true;
+      if (!started) { started = true; gate("dash"); }
+      docs = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+      render();
+    }, onErr));
+    // Respostas enviadas pelos convidados: aplica no convite e apaga a resposta.
+    unsubs.push(onSnapshot(collection(db, "respostas"), snap => {
+      snap.docChanges().forEach(ch => { if (ch.type === "added" && !ch.doc.metadata.hasPendingWrites) applyResposta(ch.doc.id, ch.doc.data()); });
+    }, () => {}));
+  }
+
+  const applying = new Set();
+  async function applyResposta(id, r) {
+    if (applying.has(id)) return;
+    applying.add(id);
+    try {
+      const ref = doc(db, "convites", r.c);
+      const snap = await getDoc(ref);
+      const batch = writeBatch(db);
+      if (snap.exists()) {
+        const cur = snap.data();
+        const pessoas = (cur.pessoas || []).map(p => ({ ...p }));
+        const set = (nome, status) => { const p = pessoas.find(x => norm(x.nome) === norm(nome)); if (p) p.status = status; };
+        (r.vai || []).forEach(n => set(n, "vai"));
+        (r.nao || []).forEach(n => set(n, "nao"));
+        batch.update(ref, { pessoas, respondidoPor: r.por || "", respondidoEm: r.em || serverTimestamp(), origem: "site" });
+      }
+      batch.delete(doc(db, "respostas", id));
+      await batch.commit();
+      if (snap.exists()) toast(`Nova resposta: ${snap.data().nome}`);
+    } catch (_) { applying.delete(id); }
+  }
+
+  function write(id, fn) {
+    queues[id] = (queues[id] || Promise.resolve()).then(fn).catch(() => toast("Não foi possível salvar. Tente de novo."));
+    return queues[id];
+  }
+
+  // Mantém as entradas de busca do convite em dia (apaga as antigas, grava as novas).
+  async function syncBusca(id, nome, pessoas, oldIds) {
+    const recs = [];
+    for (const p of pessoas) for (const k of keysFor(p.nome, nome)) recs.push({ id: await idFor(k), data: { f: nome, p: p.nome, n: pessoas.map(x => x.nome), c: id } });
+    const newIds = recs.map(r => r.id);
+    const batch = writeBatch(db);
+    (oldIds || []).filter(x => !newIds.includes(x)).forEach(x => batch.delete(doc(db, "busca", x)));
+    recs.forEach(r => batch.set(doc(db, "busca", r.id), r.data));
+    batch.update(doc(db, "convites", id), { chaves: newIds });
+    await batch.commit();
+  }
+
+  const countOf = (inv, s) => (inv.pessoas || []).filter(p => p.status === s).length;
+  function invState(inv) {
+    const n = (inv.pessoas || []).length, v = countOf(inv, "vai"), x = countOf(inv, "nao");
+    if (n && v + x === n) return v ? "vai" : "nao";
+    return "pend";
+  }
+  function problems() {
+    const sem = [], seen = {}, rep = new Set();
+    docs.forEach(d => (d.pessoas || []).forEach(p => {
+      const ks = keysFor(p.nome, d.nome);
+      if (!ks.length) { sem.push(p.nome); return; }
+      ks.forEach(k => { if (seen[k] && seen[k] !== d.id) rep.add(p.nome); seen[k] = d.id; });
+    }));
+    return { sem, rep: [...rep] };
+  }
+
+  function render() {
+    let total = 0, vai = 0, nao = 0;
+    docs.forEach(d => (d.pessoas || []).forEach(p => { total++; if (p.status === "vai") vai++; else if (p.status === "nao") nao++; }));
+    const pend = total - vai - nao;
+    $("s-total").textContent = total; $("s-vai").textContent = vai; $("s-nao").textContent = nao; $("s-pend").textContent = pend;
+    $("b-vai").style.width = total ? (vai / total * 100) + "%" : "0";
+    $("b-nao").style.width = total ? (nao / total * 100) + "%" : "0";
+    const respondidos = docs.filter(d => (d.pessoas || []).length && !(d.pessoas || []).some(p => p.status === "pendente")).length;
+    const dias = Math.ceil((RSVP_DEADLINE - Date.now()) / 864e5);
+    const line = $("s-line"); line.textContent = "";
+    line.append(el("strong", { textContent: `${respondidos} de ${docs.length}` }), " convites responderam. ",
+      dias > 0 ? `Faltam ${dias} dias para o prazo de resposta (14/07/2027).` : "O prazo de resposta já passou.");
+
+    const pr = problems(), msgs = [];
+    if (pr.sem.length) msgs.push(`Sem sobrenome, não vão se achar na busca: ${pr.sem.join(", ")}.`);
+    if (pr.rep.length) msgs.push(`Mesmo nome em convites diferentes, a busca só acha um deles: ${pr.rep.join(", ")}.`);
+    const note = $("d-note"); if (msgs.length) { note.textContent = msgs.join(" "); note.hidden = false; } else if (note.textContent.startsWith("Sem") || note.textContent.startsWith("Mesmo")) note.hidden = true;
+
+    const counts = { todos: docs.length, vai: 0, nao: 0, pend: 0 };
+    docs.forEach(d => counts[invState(d)]++);
+    Object.keys(counts).forEach(k => { $("f-" + k).textContent = counts[k]; });
+
+    const q = norm($("l-q").value);
+    const order = { pend: 0, vai: 1, nao: 2 };
+    const list = docs
+      .filter(d => filter === "todos" || invState(d) === filter)
+      .filter(d => !q || norm(d.nome).includes(q) || (d.pessoas || []).some(p => norm(p.nome).includes(q)))
+      .sort((a, b) => order[invState(a)] - order[invState(b)] || norm(a.nome).localeCompare(norm(b.nome)));
+
+    const box = $("l-list"); box.textContent = "";
+    $("x-row").hidden = !docs.length;
+    if (!docs.length) { box.append(el("p", { className: "empty", textContent: "Nenhum convite ainda. Cadastre os convites acima." })); return; }
+    if (!list.length) { box.append(el("p", { className: "empty", textContent: "Nenhum convite neste filtro." })); return; }
+    list.forEach(inv => box.append(card(inv)));
+  }
+
+  function card(inv) {
+    const st = invState(inv), n = (inv.pessoas || []).length, v = countOf(inv, "vai");
+    const pillText = st === "vai" ? `${v} de ${n} vão` : st === "nao" ? "Não vão" : (v ? `${v} de ${n} · faltam` : "Aguardando");
+    const ppl = el("ul", { className: "ppl" }, (inv.pessoas || []).map((p, i) => {
+      const b = el("button", { type: "button", className: "pp", textContent: p.nome });
+      b.dataset.s = p.status || "pendente";
+      b.setAttribute("aria-label", `${p.nome}: ${{ vai: "vai", nao: "não vai", pendente: "aguardando" }[b.dataset.s]}. Toque para mudar.`);
+      b.onclick = () => cycle(inv.id, i);
+      return el("li", {}, b);
+    }));
+    const metaBits = [];
+    if (inv.respondidoPor) metaBits.push((inv.origem === "site" ? "Confirmado no site por " : "Respondido por ") + inv.respondidoPor);
+    const em = toDate(inv.respondidoEm); if (em && !isNaN(em)) metaBits.push(fmtDate(em));
+    const notes = el("textarea", { value: inv.notas || "", placeholder: "Ex.: restrição alimentar, mesa, presente…", rows: 2 });
+    notes.setAttribute("aria-label", "Notas do convite " + inv.nome);
+    notes.addEventListener("change", () => {
+      const val = notes.value.trim();
+      if (val === (inv.notas || "")) return;
+      write(inv.id, () => updateDoc(doc(db, "convites", inv.id), { notas: val })).then(() => toast("Nota salva."));
+    });
+    const nameIn = el("input", { type: "text", value: inv.nome || "" });
+    const pplIn = el("textarea", { value: (inv.pessoas || []).map(p => p.nome).join("\n"), rows: Math.max(3, n) });
+    const editErr = el("p", { className: "err", hidden: true });
+    const saveP = el("button", { type: "button", className: "btn small", textContent: "Salvar alterações" });
+    saveP.onclick = () => {
+      const nome = nameIn.value.trim();
+      const names = pplIn.value.split(/\r?\n|,/).map(s => s.trim()).filter(Boolean);
+      if (!nome || !names.length) { editErr.textContent = "O convite precisa de um nome e de pelo menos uma pessoa."; editErr.hidden = false; return; }
+      editErr.hidden = true;
+      write(inv.id, async () => {
+        const cur = docs.find(d => d.id === inv.id); if (!cur) return;
+        const pessoas = names.map(nm => { const old = (cur.pessoas || []).find(p => norm(p.nome) === norm(nm)); return { nome: nm, status: old ? old.status : "pendente" }; });
+        await updateDoc(doc(db, "convites", inv.id), { nome, pessoas });
+        await syncBusca(inv.id, nome, pessoas, cur.chaves);
+      }).then(() => toast("Convite atualizado."));
+    };
+    const editBox = el("div", { className: "edit-ppl" },
+      el("label", { textContent: "Nome do convite" }, nameIn),
+      el("label", { textContent: "Pessoas (uma por linha)" }, pplIn),
+      editErr, el("div", { className: "btns" }, saveP));
+    const del = el("button", { type: "button", className: "btn small danger", textContent: "Excluir convite" });
+    let armed = false, armTimer;
+    del.onclick = () => {
+      if (!armed) { armed = true; del.classList.add("armed"); del.textContent = "Toque de novo para excluir"; armTimer = setTimeout(() => { armed = false; del.classList.remove("armed"); del.textContent = "Excluir convite"; }, 4000); return; }
+      clearTimeout(armTimer);
+      write(inv.id, async () => {
+        const batch = writeBatch(db);
+        (inv.chaves || []).forEach(x => batch.delete(doc(db, "busca", x)));
+        batch.delete(doc(db, "convites", inv.id));
+        await batch.commit();
+      }).then(() => toast("Convite excluído."));
+    };
+    return el("article", { className: "inv" },
+      el("div", { className: "inv-head" }, el("h3", { textContent: inv.nome || "Sem nome" }), el("span", { className: "pill " + st, textContent: pillText })),
+      ppl,
+      metaBits.length ? el("p", { className: "meta", textContent: metaBits.join(" · ") }) : null,
+      el("details", {}, el("summary", { textContent: inv.notas ? "Notas: " + inv.notas.slice(0, 60) + (inv.notas.length > 60 ? "…" : "") : "Editar, notas e opções" }),
+        el("div", { className: "body" }, editBox, el("label", { className: "edit-ppl", textContent: "Notas" }, notes), el("div", { className: "btns" }, del))));
+  }
+
+  function cycle(id, i) {
+    write(id, () => {
+      const inv = docs.find(d => d.id === id); if (!inv) return;
+      const pessoas = (inv.pessoas || []).map(p => ({ ...p }));
+      const next = { pendente: "vai", vai: "nao", nao: "pendente" };
+      pessoas[i].status = next[pessoas[i].status || "pendente"];
+      const patch = { pessoas };
+      if (!inv.respondidoEm && pessoas[i].status !== "pendente") { patch.respondidoEm = serverTimestamp(); patch.origem = "manual"; }
+      return updateDoc(doc(db, "convites", id), patch);
+    });
+  }
+
+  $("n-save").onclick = async () => {
+    const err = $("n-err"); err.hidden = true;
+    const nome = $("n-name").value.trim();
+    const names = $("n-ppl").value.split(/\r?\n|,/).map(s => s.trim()).filter(Boolean);
+    if (!nome) { err.textContent = "Dê um nome ao convite."; err.hidden = false; return; }
+    if (!names.length) { err.textContent = "Coloque pelo menos uma pessoa."; err.hidden = false; return; }
+    if (docs.some(d => norm(d.nome) === norm(nome))) { err.textContent = "Já existe um convite com esse nome."; err.hidden = false; return; }
+    const b = $("n-save"); b.disabled = true;
+    try {
+      const pessoas = names.map(nm => ({ nome: nm, status: "pendente" }));
+      const ref = await addDoc(collection(db, "convites"), { nome, pessoas, respondidoPor: "", respondidoEm: null, origem: "", notas: "", criadoEm: serverTimestamp(), chaves: [] });
+      await syncBusca(ref.id, nome, pessoas, []);
+      toast("Convite cadastrado."); $("n-name").value = ""; $("n-ppl").value = "";
+    } catch (_) { err.textContent = "Não foi possível cadastrar. Tente de novo."; err.hidden = false; }
+    b.disabled = false;
+  };
+
+  $("l-q").addEventListener("input", () => render());
+  document.querySelectorAll(".filters button").forEach(b => b.addEventListener("click", () => {
+    filter = b.dataset.f;
+    document.querySelectorAll(".filters button").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
+    render();
+  }));
+
+  $("x-csv").onclick = () => {
+    const q = v => '"' + String(v ?? "").replace(/"/g, '""') + '"';
+    const label = { vai: "Vai", nao: "Não vai", pendente: "Aguardando" };
+    const rows = [["Convite", "Pessoa", "Status", "Respondido por", "Respondido em", "Notas"]];
+    docs.slice().sort((a, b) => norm(a.nome).localeCompare(norm(b.nome))).forEach(d => (d.pessoas || []).forEach(p => {
+      const em = toDate(d.respondidoEm);
+      rows.push([d.nome, p.nome, label[p.status] || "Aguardando", d.respondidoPor, em && !isNaN(em) ? fmtDate(em) : "", d.notas]);
+    }));
+    const blob = new Blob(["\uFEFF" + rows.map(r => r.map(q).join(";")).join("\r\n")], { type: "text/csv;charset=utf-8" });
+    const a = el("a", { href: URL.createObjectURL(blob), download: "lista-de-presenca.csv" });
+    document.body.append(a); a.click(); a.remove();
+  };
+})();
+</script>
+</body>
+</html>
