@@ -2,410 +2,318 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<title>Anna & Douglas</title>
-<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F7C8D3">
+<title>Anna &amp; Doug · 14 de agosto de 2027</title>
+<meta name="description" content="Nosso casamento: 14 de agosto de 2027, Colinas do Atibaia, Sousas · Campinas/SP.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Figtree:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=DM+Sans:wght@400;500;600&family=Italianno&display=swap">
+<link rel="preload" as="image" href="assets/floral-background.webp">
 <style>
-/* Layout: uma coluna estreita, como um convite de manhã no campo; colinas de Sousas no topo, seções separadas por faixas de cor suave */
+/* Convite vertical e estreito sobre fundo rosa: flores no fundo, papéis rasgados por cima.
+   Paleta e tipografia vêm do layout aprovado (HANDOFF.md). */
 :root {
-  --bg: #F5F6EF;
-  --paper: #FCFCF8;
-  --ink: #26301F;
-  --muted: #5E6957;
-  --line: #D9DDCC;
-  --olive: #56663F;
-  --sun: #D9A23A;
-  --sky: #C9D8DE;
-  --hill1: #B9C59E;
-  --hill2: #8E9D6C;
-  --hill3: #66764A;
-  --band: #ECEFE2;
-  --rust: #B4442E;
-  --display: "Bodoni Moda", "Didot", Georgia, serif;
-  --body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --mono: "DM Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #171B14; --paper: #1F241B; --ink: #ECEEE3; --muted: #A9B19C; --line: #353C2E;
-    --olive: #B4C58E; --sun: #E8B65A; --sky: #26323A; --hill1: #3A4530; --hill2: #2F3A26; --hill3: #24301D; --band: #1C2118;
-    --rust: #E58A72;
-    color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
-  --bg: #171B14; --paper: #1F241B; --ink: #ECEEE3; --muted: #A9B19C; --line: #353C2E;
-  --olive: #B4C58E; --sun: #E8B65A; --sky: #26323A; --hill1: #3A4530; --hill2: #2F3A26; --hill3: #24301D; --band: #1C2118;
-  --rust: #E58A72;
-  color-scheme: dark;
+  --cream: #FFF7E6;
+  --blush: #F7C8D3;
+  --rose: #B46A72;       /* Rosewood: ornamentos e textos grandes */
+  --rose-ink: #9A535B;   /* Rosewood escurecido: textos pequenos, contraste AA sobre o creme */
+  --sage: #A8B58A;
+  --sky: #A9B7C6;
+  --ink: #2D3A47;        /* Midnight Lagoon */
+  --serif: "Cormorant Garamond", Georgia, serif;
+  --sans: "DM Sans", system-ui, sans-serif;
+  --script: "Italianno", cursive;
+  color-scheme: light;
 }
 * { box-sizing: border-box; }
 [hidden] { display: none !important; }
 html { scroll-behavior: smooth; }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { animation: none !important; transition: none !important; } }
-body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 16px; line-height: 1.6; }
-.wrap { max-width: 720px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
-h1, h2, h3 { font-family: var(--display); font-weight: 400; text-wrap: balance; margin: 0; line-height: 1.1; }
-h2 { font-size: clamp(2rem, 6vw, 2.75rem); }
-h3 { font-size: 1.35rem; }
-p { margin: 0; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition: none !important; } }
+body { margin: 0; background: var(--blush); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+img { max-width: 100%; }
 a { color: inherit; }
-:focus-visible { outline: 2px solid var(--sun); outline-offset: 3px; border-radius: 4px; }
-.eyebrow { font-family: var(--mono); font-size: .75rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+p { margin: 0; }
+h1, h2, h3 { font-family: var(--serif); font-weight: 500; margin: 0; text-wrap: balance; }
 
-/* Navegação */
-body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
-nav.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(6px); border-bottom: 1px solid var(--line); }
-nav.top .wrap { display: flex; gap: 4px 18px; overflow-x: auto; padding-block: 10px; scrollbar-width: none; }
-nav.top .wrap::-webkit-scrollbar { display: none; }
-nav.top a { white-space: nowrap; text-decoration: none; font-size: .875rem; color: var(--muted); padding: 4px 0; }
-nav.top a:hover { color: var(--ink); }
-nav.top a.owner-link { color: var(--olive); font-weight: 500; margin-left: auto; }
-nav.top .back-link { display: none; }
-body.admin nav.top a:not(.back-link) { display: none; }
-body.admin nav.top .back-link { display: inline; }
+.invitation { position: relative; width: min(100%, 560px); margin: 0 auto; overflow: hidden; background: var(--cream); min-height: 100vh; }
+.floral-layer { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; object-fit: cover; object-position: top center; pointer-events: none; }
+.invitation > section, .invitation > footer { position: relative; z-index: 1; }
+
+.eyebrow { display: inline-block; margin: 0; padding: 7px 18px; color: var(--rose-ink); background: rgba(255, 247, 230, .78); font-size: .68rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; }
+.rule { width: 44px; height: 1px; margin: 30px auto 16px; background: var(--rose); }
+.button { display: inline-block; padding: 13px 20px; border: 0; background: var(--ink); color: var(--cream); font: 600 .68rem var(--sans); letter-spacing: .13em; text-decoration: none; text-transform: uppercase; cursor: pointer; transition: transform .15s ease, opacity .15s ease; }
+.button:hover { transform: translateY(-1px); }
+.button[disabled] { opacity: .5; cursor: not-allowed; transform: none; }
 
 /* Abertura */
-.hero { background: linear-gradient(var(--sky), var(--bg) 70%); overflow: hidden; }
-.hero .wrap { padding-block: 56px 0; text-align: center; display: grid; gap: 14px; justify-items: center; }
-.hero h1 { font-size: clamp(3.2rem, 14vw, 6.5rem); letter-spacing: -.01em; }
-.hero h1 em { font-style: italic; color: var(--olive); padding: 0 .08em; }
-.hero .date { font-family: var(--mono); font-size: 1.05rem; letter-spacing: .3em; }
-.hero .place { color: var(--muted); }
-.hills { display: block; width: 100%; height: auto; margin-top: 8px; }
-.sun { fill: var(--sun); }
+.hero { min-height: 845px; padding: 64px 28px 42px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+.hero > .eyebrow { margin-top: 6px; }
+.crest { width: min(300px, 70vw); height: auto; aspect-ratio: 1; margin: 12px 0 8px; display: block; object-fit: contain;
+  filter: brightness(0) saturate(100%) invert(21%) sepia(16%) saturate(1635%) hue-rotate(169deg) brightness(93%) contrast(89%); }
+h1 { font-size: clamp(3.25rem, 11vw, 4.2rem); line-height: .8; letter-spacing: -.05em; }
+h1 span { color: var(--rose); font-family: var(--script); font-size: 1.17em; vertical-align: -.1em; letter-spacing: 0; }
+.date { font-family: var(--serif); font-size: 1.18rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
+.countdown { display: flex; gap: 25px; margin-top: 35px; padding: 13px 23px; background: rgba(255, 247, 230, .82); }
+.time strong { display: block; font-family: var(--serif); font-size: 2.7rem; font-weight: 500; line-height: 1; font-variant-numeric: tabular-nums; }
+.time span { font-size: .62rem; letter-spacing: .13em; text-transform: uppercase; }
 
-/* Contagem */
-.count { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; width: 100%; max-width: 460px; margin-top: 10px; }
-.count div { display: grid; gap: 2px; }
-.count b { font-family: var(--display); font-weight: 400; font-size: clamp(2rem, 9vw, 3rem); line-height: 1; font-variant-numeric: tabular-nums; }
-.count span { font-family: var(--mono); font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
-
-section { padding-block: 64px; }
-section.alt { background: var(--band); }
-.head { display: grid; gap: 8px; margin-bottom: 28px; }
-.lede { color: var(--muted); max-width: 60ch; }
-.note { font-size: .82rem; color: var(--muted); font-style: italic; margin-top: 16px; }
+/* Seções em papel */
+.section { min-height: 500px; padding: 95px 38px 72px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+.paper { width: 100%; padding: 32px 28px; position: relative; overflow: hidden;
+  background: linear-gradient(rgba(255, 247, 230, .58), rgba(255, 247, 230, .58)), url("assets/paper-crumpled.webp") center / cover;
+  clip-path: polygon(2% .4%,7% 0,13% 1.4%,19% .2%,26% 1.6%,33% 0,40% 1.1%,47% .1%,54% 1.8%,61% 0,69% 1.3%,77% .2%,85% 1.7%,93% 0,98.2% 1.4%,100% 5%,98.1% 10%,100% 15%,98.5% 20%,100% 26%,98.2% 32%,100% 39%,98.3% 46%,100% 53%,98.1% 60%,100% 67%,98.4% 74%,100% 81%,98.2% 88%,99.5% 95%,96% 100%,89% 98.3%,82% 100%,74% 98.2%,66% 100%,58% 98.4%,50% 100%,42% 98.2%,34% 100%,26% 98.1%,18% 100%,10% 98.3%,3% 100%,0 96%,1.8% 89%,0 82%,1.5% 75%,0 68%,1.8% 61%,0 54%,1.4% 47%,0 40%,1.7% 33%,0 26%,1.6% 19%,0 12%,1.8% 6%);
+  filter: drop-shadow(0 9px 12px rgba(45, 58, 71, .12)); }
+h2 { margin-top: 10px; font-size: 3.2rem; line-height: .88; }
 
 /* Local */
-.venue { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
-.venue svg { display: block; width: 100%; height: auto; }
-.venue .info { padding: 20px; display: grid; gap: 14px; }
-.addr { font-size: 1.05rem; }
-.btns { display: flex; flex-wrap: wrap; gap: 10px; }
-.btn { display: inline-flex; align-items: center; gap: 8px; padding: 11px 18px; border-radius: 999px; border: 1px solid var(--ink); text-decoration: none; font: 500 .95rem var(--body); background: transparent; color: var(--ink); cursor: pointer; }
-.btn.solid { background: var(--ink); color: var(--bg); }
-.btn:hover { opacity: .85; }
-.btn[disabled] { opacity: .45; cursor: not-allowed; }
-.btn svg { width: 18px; height: 18px; }
+.local .paper { display: grid; grid-template-columns: 1fr 1fr; align-items: stretch; padding: 22px 0 22px 14px; }
+.location-copy { align-self: center; padding-right: 10px; }
+.venue-illustration-frame { min-height: 310px; overflow: hidden; }
+.venue-illustration { width: 100%; height: 100%; display: block; object-fit: cover; object-position: 25% center; transform: scale(1.32); mix-blend-mode: multiply; }
+.intro { max-width: 280px; margin: 18px auto 0; font-family: var(--serif); font-size: 1.25rem; font-style: italic; line-height: 1.25; }
+.venue-name { margin: 22px 0 4px; font-family: var(--serif); font-size: 1.65rem; font-weight: 600; line-height: 1.1; }
+.address { margin: 0 0 22px; font-size: .78rem; line-height: 1.6; }
+@media (max-width: 420px) {
+  .local .paper { grid-template-columns: 1fr; padding: 28px 22px 0; }
+  .location-copy { padding-right: 0; }
+  .venue-illustration-frame { min-height: 230px; margin: 18px -22px 0; }
+  .venue-illustration { transform: scale(1.1); object-position: center; }
+}
 
 /* Cronograma */
-.timeline { list-style: none; margin: 0; padding: 0; display: grid; }
-.timeline li { display: grid; grid-template-columns: 70px 18px 1fr; gap: 0 14px; }
-.timeline time { font-family: var(--mono); font-size: .95rem; padding-top: 2px; font-variant-numeric: tabular-nums; }
-.timeline .dot { position: relative; }
-.timeline .dot::before { content: ""; position: absolute; left: 50%; top: 8px; width: 10px; height: 10px; margin-left: -5px; border-radius: 50%; background: var(--olive); }
-.timeline .dot::after { content: ""; position: absolute; left: 50%; top: 22px; bottom: -6px; width: 1px; background: var(--line); }
-.timeline li:last-child .dot::after { display: none; }
-.timeline .what { padding-bottom: 26px; min-width: 0; }
-.timeline .what strong { font-weight: 600; display: block; }
-.timeline .what span { color: var(--muted); font-size: .92rem; }
-.timeline li.key .dot::before { background: var(--sun); width: 14px; height: 14px; margin-left: -7px; top: 6px; }
+.schedule { width: 100%; margin: 24px 0 0; padding: 0; list-style: none; text-align: left; }
+.schedule li { display: grid; grid-template-columns: 76px 1fr; gap: 10px; padding: 14px 0; border-bottom: 1px solid rgba(180, 106, 114, .48); }
+.schedule time { color: var(--rose); font-family: var(--serif); font-size: 1.55rem; font-weight: 600; font-variant-numeric: tabular-nums; }
+.schedule span { align-self: center; font-size: .7rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
 
-/* Dress code */
-.dress { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
-.dress article { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 22px; display: grid; gap: 12px; align-content: start; min-width: 0; }
-.dress .tag { font-family: var(--mono); font-size: .8rem; color: var(--olive); }
-.dress ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; }
-.swatches { display: flex; flex-wrap: wrap; gap: 10px; }
-.sw { display: grid; gap: 4px; justify-items: center; font-size: .72rem; color: var(--muted); }
-.sw i { width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--line); display: block; }
-
-/* Menu */
-.menu { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 32px 24px; display: grid; gap: 28px; text-align: center; }
-.menu .course { display: grid; gap: 8px; }
-.menu .course h3 { font-style: italic; color: var(--olive); }
-.menu ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
-.menu li small { display: block; color: var(--muted); font-size: .82rem; }
-.menu hr { border: 0; border-top: 1px solid var(--line); width: 60px; margin: 0 auto; }
-
-/* RSVP */
-form { display: grid; gap: 18px; background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 24px; }
-.field { display: grid; gap: 6px; min-width: 0; }
-.row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 18px; }
-label, legend { font-weight: 500; font-size: .92rem; }
-input[type=text], input[type=number], input[type=search], input[type=email], input[type=password], textarea { width: 100%; font: inherit; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; }
-textarea { min-height: 84px; resize: vertical; }
-fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: 8px; }
-.choices { display: flex; flex-wrap: wrap; gap: 10px; }
-.choice { position: relative; }
-.choice input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
-.choice span { display: inline-block; padding: 9px 16px; border: 1px solid var(--line); border-radius: 999px; background: var(--bg); }
-.choice input:checked + span { background: var(--olive); border-color: var(--olive); color: var(--paper); }
-.choice input:focus-visible + span { outline: 2px solid var(--sun); outline-offset: 2px; }
-.out { display: grid; gap: 10px; border-top: 1px dashed var(--line); padding-top: 18px; }
-.out pre { white-space: pre-wrap; word-break: break-word; font: .88rem/1.5 var(--mono); background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 14px; margin: 0; }
-.status { font-size: .88rem; color: var(--olive); min-height: 1.4em; }
-.err { color: var(--rust); font-size: .88rem; }
-.greet { display: grid; gap: 4px; }
-.greet h3 { font-size: 1.6rem; }
-.people { display: grid; gap: 8px; }
-.person { display: flex; align-items: center; gap: 10px; cursor: pointer; }
-.person input { width: 18px; height: 18px; accent-color: var(--olive); }
-.search { display: flex; gap: 8px; }
+/* Confirmação de presença: papel azul rasgado */
+.rsvp .paper { padding: 64px 40px; background: url("assets/rsvp-torn-paper.webp") center / 100% 100% no-repeat; clip-path: none;
+  filter: drop-shadow(0 10px 12px rgba(45, 58, 71, .22)); color: var(--cream); }
+.rsvp h2 { color: var(--cream); font-size: clamp(2.3rem, 8vw, 3.2rem); line-height: .95; }
+.rsvp .rule { background: var(--blush); }
+.rsvp .button { background: var(--blush); color: var(--ink); margin-top: 8px; }
+.rsvp form { margin: 0; text-align: left; display: grid; gap: 16px; }
+.rsvp .lead { text-align: center; font-family: var(--serif); font-style: italic; font-size: 1.15rem; line-height: 1.3; }
+.rsvp label { font-size: .7rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
+.search { display: flex; gap: 8px; margin-top: 8px; }
 .search input { flex: 1; min-width: 0; }
-.found { display: grid; gap: 16px; border-top: 1px dashed var(--line); padding-top: 18px; }
-.found h3 { font-size: 1.5rem; }
-.person.none { color: var(--muted); font-size: .92rem; }
+.rsvp input[type=text] { width: 100%; padding: 12px 14px; border: 1px solid rgba(255, 247, 230, .55); background: rgba(255, 247, 230, .1); color: var(--cream); font: 1rem var(--sans); border-radius: 0; }
+.rsvp input[type=text]::placeholder { color: rgba(255, 247, 230, .6); }
+.rsvp input[type=text]:focus-visible, .rsvp .button:focus-visible, .rsvp input[type=checkbox]:focus-visible { outline: 2px solid var(--blush); outline-offset: 2px; }
+.rsvp .search .button { margin-top: 0; }
+.found { display: grid; gap: 12px; padding-top: 16px; border-top: 1px solid rgba(255, 247, 230, .3); }
+.found h3 { font-size: 1.6rem; line-height: 1.05; color: var(--cream); }
+.people { display: grid; gap: 10px; }
+.person { display: flex; align-items: center; gap: 10px; font-size: .95rem !important; font-weight: 400 !important; letter-spacing: 0 !important; text-transform: none !important; cursor: pointer; }
+.person input { width: 18px; height: 18px; margin: 0; accent-color: var(--blush); }
+.person.none { opacity: .8; }
+.msg { font-size: .88rem; line-height: 1.45; min-height: 0; }
+.msg.err { color: var(--blush); }
+.msg.ok { font-family: var(--serif); font-size: 1.35rem; font-style: italic; text-align: center; }
+.rsvp .actions { text-align: center; }
 
-footer { text-align: center; padding-block: 48px 64px; color: var(--muted); }
-footer .mono { font-family: var(--display); font-style: italic; font-size: 2rem; color: var(--ink); }
-footer .admin-link { display: inline-block; margin-top: 18px; font-family: var(--mono); font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
-footer .admin-link:hover { color: var(--ink); }
+/* Dress code e cardápio */
+.paper .lede-italic { max-width: 320px; margin: 16px auto 0; font-family: var(--serif); font-size: 1.2rem; font-style: italic; line-height: 1.25; }
+.dress-block { margin-top: 26px; padding-top: 22px; border-top: 1px solid rgba(180, 106, 114, .48); }
+.dress-block h3, .course h3 { font-size: 1.7rem; line-height: 1; }
+.dress-block .tag { margin-bottom: 6px; color: var(--rose-ink); font-size: .62rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; }
+.plain { margin: 14px auto 0; padding: 0; list-style: none; max-width: 340px; display: grid; gap: 9px; font-size: .84rem; line-height: 1.45; }
+.swatches { display: grid; grid-template-columns: repeat(5, auto); justify-content: center; gap: 10px; margin-top: 18px; }
+.sw { display: grid; gap: 6px; justify-items: center; font-size: .52rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
+.sw i { width: 34px; height: 34px; border-radius: 50%; display: block; box-shadow: inset 0 0 0 1px rgba(45, 58, 71, .18); }
+.menu { display: grid; gap: 22px; margin-top: 24px; }
+.course { display: grid; gap: 10px; }
+.course h3 { color: var(--rose); font-style: italic; }
+.course ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 6px; font-size: .86rem; line-height: 1.4; }
+.course small { display: block; color: var(--rose-ink); font-size: .74rem; }
+.course + .course { padding-top: 22px; border-top: 1px solid rgba(180, 106, 114, .48); }
+.sample-note { margin-top: 22px; font-family: var(--serif); font-style: italic; font-size: .95rem; color: var(--rose-ink); }
 
-/* Área dos noivos */
-body.admin .hero, body.admin main, body.admin footer { display: none; }
-#noivos { padding-block: 40px 80px; }
-#noivos .head { margin-bottom: 24px; }
-.gate { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 32px 24px; display: grid; gap: 14px; justify-items: start; }
-.gate svg { width: 36px; height: 36px; color: var(--olive); }
-.gate p { color: var(--muted); max-width: 52ch; }
-.dash { display: grid; gap: 28px; }
-.stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-@media (min-width: 600px) { .stats { grid-template-columns: repeat(4, 1fr); } }
-.stat { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 16px; display: grid; gap: 4px; min-width: 0; }
-.stat b { font-family: var(--display); font-weight: 400; font-size: 2.4rem; line-height: 1; font-variant-numeric: tabular-nums; }
-.stat span { font-family: var(--mono); font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
-.stat.vai b { color: var(--olive); }
-.stat.nao b { color: var(--rust); }
-.bar { display: flex; height: 10px; border-radius: 999px; overflow: hidden; background: var(--line); }
+footer { padding: 26px; background: rgba(255, 247, 230, .88); text-align: center; font-size: .62rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; display: grid; gap: 10px; }
+footer a { text-decoration: none; color: var(--rose-ink); font-size: .58rem; }
+footer a:hover { text-decoration: underline; }
+
+/* Área dos noivos: mesma linguagem do convite, sem as flores competindo com os dados */
+body.admin .invite-only { display: none !important; }
+body.admin .floral-layer { opacity: .25; }
+#noivos { padding: 48px 22px 72px; }
+.admin-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 18px; }
+.admin-head a, .who button { font: 600 .66rem var(--sans); letter-spacing: .13em; text-transform: uppercase; color: var(--ink); background: none; border: 0; padding: 4px 0; cursor: pointer; text-decoration: none; }
+.admin-head a:hover, .who button:hover { text-decoration: underline; }
+#noivos .paper { text-align: left; padding: 30px 24px; }
+#noivos h2 { font-size: 2.6rem; }
+.gate { display: grid; gap: 14px; justify-items: start; }
+.gate h3 { font-size: 1.7rem; }
+.gate p { font-size: .9rem; }
+.gate form { display: grid; gap: 14px; width: 100%; max-width: 360px; }
+.field { display: grid; gap: 6px; min-width: 0; }
+.field label, .edit-ppl label { font-size: .66rem; font-weight: 600; letter-spacing: .13em; text-transform: uppercase; }
+#noivos input[type=text], #noivos input[type=email], #noivos input[type=password], #noivos input[type=search], #noivos textarea {
+  width: 100%; padding: 11px 12px; border: 1px solid rgba(45, 58, 71, .35); background: rgba(255, 255, 255, .55); color: var(--ink); font: .95rem var(--sans); border-radius: 0; }
+#noivos textarea { min-height: 84px; resize: vertical; }
+.err { color: var(--rose-ink); font-size: .85rem; }
+.dash { display: grid; gap: 22px; }
+.who { display: flex; justify-content: space-between; align-items: center; gap: 8px; font-size: .8rem; }
+.stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; border-top: 1px solid rgba(180, 106, 114, .48); }
+@media (min-width: 480px) { .stats { grid-template-columns: repeat(4, 1fr); } }
+.stat { padding: 14px 4px; border-bottom: 1px solid rgba(180, 106, 114, .48); display: grid; gap: 2px; }
+.stat b { font-family: var(--serif); font-weight: 500; font-size: 2.6rem; line-height: 1; font-variant-numeric: tabular-nums; }
+.stat span { font-size: .6rem; font-weight: 600; letter-spacing: .13em; text-transform: uppercase; }
+.stat.vai b { color: var(--ink); }
+.stat.nao b { color: var(--rose); }
+.bar { display: flex; height: 6px; background: rgba(45, 58, 71, .12); margin-top: 14px; }
 .bar i { display: block; height: 100%; }
-.bar .b-vai { background: var(--olive); }
-.bar .b-nao { background: var(--rust); }
+.bar .b-vai { background: var(--ink); }
+.bar .b-nao { background: var(--rose); }
 .summary { display: grid; gap: 10px; }
-.summary p { font-size: .92rem; color: var(--muted); }
-.summary p strong { color: var(--ink); font-weight: 600; }
-.tools { display: grid; gap: 12px; }
-.tool { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; }
-.tool > summary { cursor: pointer; list-style: none; padding: 16px 20px; font-weight: 500; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
-.tool > summary::-webkit-details-marker { display: none; }
-.tool > summary::after { content: "+"; font-family: var(--mono); color: var(--muted); font-size: 1.1rem; }
-.tool[open] > summary::after { content: "–"; }
-.tool .body { padding: 0 20px 20px; display: grid; gap: 12px; }
-.tool .hint { font-size: .85rem; color: var(--muted); }
-.preview { background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 14px; display: grid; gap: 6px; font-size: .92rem; }
-.preview strong { font-weight: 600; }
-.listhead { display: grid; gap: 12px; }
-.filters { display: flex; flex-wrap: wrap; gap: 8px; }
-.filters button { font: 500 .85rem var(--body); padding: 7px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--paper); color: var(--ink); cursor: pointer; }
-.filters button[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--bg); }
-.filters button span { font-family: var(--mono); font-size: .75rem; opacity: .7; margin-left: 4px; }
-.invs { display: grid; gap: 12px; }
-.inv { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; display: grid; gap: 12px; min-width: 0; }
-.inv-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 6px 12px; }
-.inv-head h3 { font-size: 1.3rem; min-width: 0; overflow-wrap: anywhere; }
-.pill { font-family: var(--mono); font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; padding: 3px 10px; border-radius: 999px; border: 1px solid currentColor; white-space: nowrap; }
-.pill.vai { color: var(--olive); }
-.pill.nao { color: var(--rust); }
-.pill.pend { color: var(--muted); }
-.ppl { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
-.pp { display: inline-flex; align-items: center; gap: 6px; font: .9rem var(--body); padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); cursor: pointer; text-align: left; }
-.pp::before { font-family: var(--mono); font-size: .8rem; width: 1em; text-align: center; }
-.pp[data-s="vai"] { border-color: var(--olive); background: color-mix(in srgb, var(--olive) 14%, var(--paper)); }
-.pp[data-s="vai"]::before { content: "✓"; color: var(--olive); }
-.pp[data-s="nao"] { border-color: color-mix(in srgb, var(--rust) 55%, var(--line)); color: var(--muted); text-decoration: line-through; text-decoration-color: color-mix(in srgb, var(--rust) 60%, transparent); }
-.pp[data-s="nao"]::before { content: "✕"; color: var(--rust); }
-.pp[data-s="pendente"]::before { content: "·"; color: var(--muted); }
-.meta { font-size: .82rem; color: var(--muted); }
-.inv details summary { cursor: pointer; font-size: .85rem; color: var(--muted); }
-.inv details .body { display: grid; gap: 10px; padding-top: 10px; }
-.inv details textarea { min-height: 64px; }
-.btn.small { padding: 7px 14px; font-size: .85rem; }
-.btn.danger { border-color: var(--rust); color: var(--rust); }
-.btn.danger.armed { background: var(--rust); color: var(--paper); }
-.empty { text-align: center; color: var(--muted); padding: 28px 16px; border: 1px dashed var(--line); border-radius: 14px; }
-.toast { position: fixed; left: 50%; bottom: max(20px, env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--ink); color: var(--bg); padding: 10px 18px; border-radius: 999px; font-size: .9rem; z-index: 20; max-width: calc(100% - 32px); text-align: center; }
-.legend { font-size: .82rem; color: var(--muted); }
-.gate form { border: 0; padding: 0; background: none; width: 100%; max-width: 380px; }
-.who { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px 12px; font-size: .85rem; color: var(--muted); }
-.who button { font: 500 .85rem var(--body); background: none; border: 0; color: var(--ink); text-decoration: underline; cursor: pointer; padding: 4px 0; }
-.status.ok { font-size: 1rem; }
-.sitecard { background: var(--paper); border: 1px solid var(--line); border-left: 3px solid var(--olive); border-radius: 14px; padding: 18px 20px; display: grid; gap: 10px; }
-.sitecard.stale { border-left-color: var(--sun); }
-.sitehead { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 6px 12px; }
-.sitecard .hint { font-size: .85rem; color: var(--muted); }
-.pill.ok { color: var(--olive); }
-.pill.stale { color: var(--sun); }
-.edit-ppl { display: grid; gap: 8px; }
-.edit-ppl label { font-size: .85rem; }
+.summary > p { font-size: .82rem; line-height: 1.5; }
+.tool summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; font: 600 .7rem var(--sans); letter-spacing: .13em; text-transform: uppercase; padding: 12px 0; border-top: 1px solid rgba(180, 106, 114, .48); border-bottom: 1px solid rgba(180, 106, 114, .48); }
+.tool summary::-webkit-details-marker { display: none; }
+.tool summary::after { content: "+"; font-family: var(--serif); font-size: 1.3rem; line-height: .6; color: var(--rose); }
+.tool[open] summary::after { content: "–"; }
+.tool .body { display: grid; gap: 12px; padding-top: 14px; }
+.hint { font-size: .8rem; line-height: 1.5; }
+.listhead { display: grid; gap: 10px; }
+.filters { display: flex; flex-wrap: wrap; gap: 6px; }
+.filters button { font: 600 .62rem var(--sans); letter-spacing: .1em; text-transform: uppercase; padding: 8px 12px; border: 1px solid var(--ink); background: transparent; color: var(--ink); cursor: pointer; }
+.filters button[aria-pressed="true"] { background: var(--ink); color: var(--cream); }
+.filters button span { margin-left: 5px; opacity: .7; font-variant-numeric: tabular-nums; }
+.legend { font-size: .76rem; }
+.invs { display: grid; gap: 0; }
+.inv { padding: 16px 0; border-bottom: 1px solid rgba(180, 106, 114, .48); display: grid; gap: 10px; min-width: 0; }
+.inv-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 4px 10px; }
+.inv-head h3 { font-size: 1.5rem; line-height: 1.05; overflow-wrap: anywhere; }
+.pill { font-size: .58rem; font-weight: 600; letter-spacing: .13em; text-transform: uppercase; white-space: nowrap; }
+.pill.vai { color: var(--ink); }
+.pill.nao, .pill.pend { color: var(--rose-ink); }
+.ppl { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.pp { display: inline-flex; align-items: center; gap: 6px; font: .85rem var(--sans); padding: 6px 11px; border: 1px solid rgba(45, 58, 71, .35); background: rgba(255, 255, 255, .45); color: var(--ink); cursor: pointer; text-align: left; }
+.pp::before { width: 1em; text-align: center; font-weight: 600; }
+.pp[data-s="vai"] { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+.pp[data-s="vai"]::before { content: "✓"; }
+.pp[data-s="nao"] { color: var(--rose-ink); border-color: var(--rose); text-decoration: line-through; }
+.pp[data-s="nao"]::before { content: "✕"; text-decoration: none; }
+.pp[data-s="pendente"]::before { content: "·"; }
+.meta { font-size: .74rem; color: var(--rose-ink); }
+.inv details summary { cursor: pointer; font-size: .74rem; font-weight: 600; letter-spacing: .08em; }
+.inv details .body { display: grid; gap: 12px; padding-top: 12px; }
+.edit-ppl { display: grid; gap: 6px; }
+.btns { display: flex; flex-wrap: wrap; gap: 8px; }
+.button.small { padding: 10px 14px; font-size: .6rem; }
+.button.ghost { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
+.button.danger { background: transparent; color: var(--rose-ink); box-shadow: inset 0 0 0 1px var(--rose); }
+.button.danger.armed { background: var(--rose-ink); color: var(--cream); }
+.empty { text-align: center; font-family: var(--serif); font-style: italic; font-size: 1.15rem; padding: 24px 8px; }
+.toast { position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%); z-index: 20; background: var(--ink); color: var(--cream); padding: 12px 18px; font-size: .78rem; letter-spacing: .04em; max-width: calc(100% - 32px); text-align: center; }
 </style>
 </head>
 <body>
+<main class="invitation">
+  <img class="floral-layer" src="assets/floral-background.webp" alt="" fetchpriority="high">
 
-<nav class="top" aria-label="Seções">
-  <div class="wrap">
-    <a href="#local">Local</a>
-    <a href="#cronograma">Cronograma</a>
-    <a href="#dresscode">Dress code</a>
-    <a href="#brunch">Menu do brunch</a>
-    <a href="#rsvp">Confirmar presença</a>
-    <a href="#noivos" class="owner-link" id="nav-owner" hidden>Área dos noivos</a>
-    <a href="#" class="back-link" id="nav-back">← Voltar ao convite</a>
-  </div>
-</nav>
-
-<header class="hero">
-  <div class="wrap">
-    <p class="eyebrow">Vamos nos casar</p>
-    <h1>Anna <em>&amp;</em> Douglas</h1>
-    <p class="date">14 · 08 · 2027</p>
-    <p class="place">Sábado de manhã · Sousas, Campinas – SP</p>
-    <div class="count" id="count" aria-live="off">
-      <div><b id="cd-d">–</b><span>dias</span></div>
-      <div><b id="cd-h">–</b><span>horas</span></div>
-      <div><b id="cd-m">–</b><span>min</span></div>
-      <div><b id="cd-s">–</b><span>seg</span></div>
+  <section class="hero invite-only" aria-labelledby="t-casal">
+    <p class="eyebrow">Nosso casamento</p>
+    <img class="crest" src="assets/brasao.webp" width="300" height="300" alt="Brasão de Anna e Doug">
+    <h1 id="t-casal">Anna <span>&amp;</span> Doug</h1>
+    <div class="rule" aria-hidden="true"></div>
+    <p class="date">14 de agosto de 2027</p>
+    <div class="countdown" role="timer" aria-label="Contagem regressiva para o casamento">
+      <div class="time"><strong id="cd-d">–</strong><span>Dias</span></div>
+      <div class="time"><strong id="cd-h">–</strong><span>Horas</span></div>
+      <div class="time"><strong id="cd-m">–</strong><span>Min</span></div>
     </div>
-  </div>
-  <svg class="hills" viewBox="0 0 1200 220" preserveAspectRatio="none" aria-hidden="true">
-    <circle class="sun" cx="880" cy="110" r="46" opacity=".85"/>
-    <path fill="var(--hill1)" d="M0 150 C 150 90, 300 110, 430 130 S 700 70, 880 120 S 1100 100, 1200 120 L1200 220 L0 220 Z"/>
-    <path fill="var(--hill2)" d="M0 180 C 180 130, 360 160, 520 150 S 820 120, 1000 160 S 1150 150, 1200 155 L1200 220 L0 220 Z"/>
-    <path fill="var(--hill3)" d="M0 205 C 200 180, 420 200, 640 190 S 1000 175, 1200 195 L1200 220 L0 220 Z"/>
-    <path fill="var(--bg)" d="M0 214 C 300 206, 900 210, 1200 212 L1200 220 L0 220 Z"/>
-  </svg>
-</header>
+  </section>
 
-<main>
-  <section id="local">
-    <div class="wrap">
-      <div class="head">
-        <p class="eyebrow">Onde</p>
-        <h2>O local</h2>
-        <p class="lede">A cerimônia e o brunch acontecem no mesmo lugar, em Sousas, distrito de Campinas. Recomendamos chegar com uns 20 minutos de antecedência.</p>
+  <section class="section local invite-only" id="local" aria-labelledby="t-local">
+    <div class="paper">
+      <div class="location-copy">
+        <p class="eyebrow">Como chegar</p>
+        <h2 id="t-local">O local</h2>
+        <p class="intro">Uma manhã para celebrar, conversar e criar memórias juntos.</p>
+        <p class="venue-name">Colinas do Atibaia</p>
+        <p class="address">Sousas · Campinas/SP</p>
+        <a class="button" href="https://www.google.com/maps/search/?api=1&amp;query=Colinas%20do%20Atibaia%2C%20Sousas%2C%20Campinas%20-%20SP" target="_blank" rel="noopener">Ver no mapa</a>
       </div>
-      <div class="venue">
-        <svg viewBox="0 0 600 220" aria-hidden="true">
-          <rect width="600" height="220" fill="var(--band)"/>
-          <path d="M-10 160 C 90 120, 160 190, 260 150 S 420 90, 610 130" fill="none" stroke="var(--sky)" stroke-width="14" stroke-linecap="round"/>
-          <path d="M40 -10 L 120 230 M 0 70 L 610 40 M 330 -10 C 300 80, 360 140, 340 230" fill="none" stroke="var(--line)" stroke-width="6"/>
-          <g transform="translate(300 96)">
-            <circle r="34" fill="var(--sun)" opacity=".18"/>
-            <path d="M0 18 C -14 0, -16 -6, -16 -12 A16 16 0 0 1 16 -12 C 16 -6, 14 0, 0 18 Z" fill="var(--olive)"/>
-            <circle cy="-12" r="6" fill="var(--paper)"/>
-          </g>
-          <text x="300" y="150" text-anchor="middle" font-family="DM Mono, monospace" font-size="13" fill="var(--muted)" letter-spacing="2">SOUSAS · CAMPINAS</text>
-        </svg>
-        <div class="info">
-          <div>
-            <p class="eyebrow">Endereço</p>
-            <p class="addr" id="venue-name">Sousas, Campinas – SP</p>
-          </div>
-          <div class="btns">
-            <a class="btn solid" id="link-maps" href="https://www.google.com/maps/search/?api=1&amp;query=Sousas%2C%20Campinas%20-%20SP" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
-              Abrir no Google Maps
-            </a>
-            <a class="btn" id="link-waze" href="https://waze.com/ul?q=Sousas%2C%20Campinas%20-%20SP&amp;navigate=yes" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 15c-1-1-1.5-2.5-1.5-4A8.5 8.5 0 0 1 20 9c1.6 3.6-.6 8-4.5 8.5H10"/><circle cx="8" cy="18.5" r="1.8"/><circle cx="16" cy="18.5" r="1.8"/><path d="M10 9.5h.01M15 9.5h.01M10 13c1.3 1 2.7 1 4 0"/></svg>
-              Ir com o Waze
-            </a>
-          </div>
+      <div class="venue-illustration-frame">
+        <img class="venue-illustration" src="assets/colinas-ilustracao.webp" width="900" height="746" loading="lazy" alt="Ilustração em traço do Colinas do Atibaia">
+      </div>
+    </div>
+  </section>
+
+  <section class="section invite-only" id="cronograma" aria-labelledby="t-dia">
+    <div class="paper">
+      <p class="eyebrow">14 de agosto</p>
+      <h2 id="t-dia">O grande dia</h2>
+      <ol class="schedule">
+        <li><time>08:00</time><span>Cerimônia</span></li>
+        <li><time>09:30</time><span>Café da manhã</span></li>
+        <li><time>11:00</time><span>Jogos</span></li>
+        <li><time>12:30</time><span>Encerramento</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section invite-only" id="dresscode" aria-labelledby="t-dress">
+    <div class="paper">
+      <p class="eyebrow">O que vestir</p>
+      <h2 id="t-dress">Dress code</h2>
+      <p class="lede-italic">Agosto em Campinas tem manhã fresca e sol forte mais tarde. Pense em camadas leves e sapatos que andem bem na grama.</p>
+      <div class="dress-block">
+        <p class="tag">Convidados</p>
+        <h3>Passeio completo diurno</h3>
+        <ul class="plain">
+          <li>Vestidos midi ou longos fluidos, alfaiataria leve.</li>
+          <li>Terno sem gravata ou calça social com blazer.</li>
+          <li>Salto bloco, anabela ou sapatilha: salto fino afunda na grama.</li>
+          <li>Um casaquinho para o começo da manhã.</li>
+          <li>O branco e os tons de off-white ficam para a noiva.</li>
+        </ul>
+      </div>
+      <div class="dress-block">
+        <p class="tag">Padrinhos e madrinhas</p>
+        <h3>Na paleta do casamento</h3>
+        <ul class="plain">
+          <li>Madrinhas: vestido longo em um dos tons abaixo, modelo livre.</li>
+          <li>Padrinhos: terno cinza claro ou bege, camisa branca.</li>
+        </ul>
+        <div class="swatches" aria-label="Paleta dos padrinhos">
+          <div class="sw"><i style="background:#F7C8D3"></i>Blush</div>
+          <div class="sw"><i style="background:#B46A72"></i>Rosewood</div>
+          <div class="sw"><i style="background:#A8B58A"></i>Sálvia</div>
+          <div class="sw"><i style="background:#A9B7C6"></i>Céu</div>
+          <div class="sw"><i style="background:#2D3A47"></i>Lagoon</div>
         </div>
       </div>
+      <p class="sample-note">Sugestão de traje, a confirmar pelos noivos.</p>
     </div>
   </section>
 
-  <section id="cronograma" class="alt">
-    <div class="wrap">
-      <div class="head">
-        <p class="eyebrow">Sábado, 14 de agosto</p>
-        <h2>Cronograma</h2>
-        <p class="lede">Uma manhã sem pressa, do sim ao último brinde.</p>
-      </div>
-      <ol class="timeline">
-        <li><time>10:00</time><i class="dot"></i><div class="what"><strong>Recepção dos convidados</strong><span>Água aromatizada e café passado na chegada.</span></div></li>
-        <li class="key"><time>10:30</time><i class="dot"></i><div class="what"><strong>Cerimônia</strong><span>Ao ar livre. Pedimos que estejam sentados alguns minutos antes.</span></div></li>
-        <li><time>11:15</time><i class="dot"></i><div class="what"><strong>Fotos e brinde de boas-vindas</strong><span>Espumante e sucos enquanto os noivos fazem as fotos com a família.</span></div></li>
-        <li class="key"><time>12:00</time><i class="dot"></i><div class="what"><strong>Brunch servido</strong><span>Confira o menu logo abaixo.</span></div></li>
-        <li><time>13:30</time><i class="dot"></i><div class="what"><strong>Corte do bolo</strong><span>Seguido do brinde dos padrinhos.</span></div></li>
-        <li><time>14:00</time><i class="dot"></i><div class="what"><strong>Música e pista</strong><span>Hora de dançar ao sol da tarde.</span></div></li>
-        <li><time>17:00</time><i class="dot"></i><div class="what"><strong>Encerramento</strong><span>Despedida dos noivos.</span></div></li>
-      </ol>
-      <p class="note">Horários de exemplo, ainda a confirmar.</p>
-    </div>
-  </section>
-
-  <section id="dresscode">
-    <div class="wrap">
-      <div class="head">
-        <p class="eyebrow">O que vestir</p>
-        <h2>Dress code</h2>
-        <p class="lede">Agosto em Campinas costuma ter manhã fresca e sol forte ao meio-dia. Pense em camadas leves e calçados que andem bem na grama.</p>
-      </div>
-      <div class="dress">
-        <article>
-          <p class="tag">Convidados</p>
-          <h3>Passeio completo diurno</h3>
-          <ul>
-            <li>Vestidos midi ou longos fluidos, conjuntos de alfaiataria leve.</li>
-            <li>Terno sem gravata ou calça social com blazer.</li>
-            <li>Salto bloco, anabela ou sapatilha. Salto fino afunda na grama.</li>
-            <li>Leve um casaquinho para a manhã.</li>
-            <li>O branco e os tons de off-white ficam para a noiva.</li>
-          </ul>
-        </article>
-        <article>
-          <p class="tag">Padrinhos e madrinhas</p>
-          <h3>Na paleta do casamento</h3>
-          <ul>
-            <li>Madrinhas: vestido longo em um dos tons abaixo, modelo livre.</li>
-            <li>Padrinhos: terno em cinza claro ou bege, camisa branca, gravata verde-oliva.</li>
-            <li>Sapato marrom ou caramelo.</li>
-          </ul>
-          <div class="swatches" aria-label="Paleta dos padrinhos">
-            <div class="sw"><i style="background:#9DAA83"></i>sálvia</div>
-            <div class="sw"><i style="background:#5F6E45"></i>oliva</div>
-            <div class="sw"><i style="background:#E2C27A"></i>manteiga</div>
-            <div class="sw"><i style="background:#A9BFCB"></i>céu</div>
-            <div class="sw"><i style="background:#C9B9A1"></i>areia</div>
-          </div>
-        </article>
-      </div>
-      <p class="note">Sugestão inicial de traje e paleta, para os noivos ajustarem.</p>
-    </div>
-  </section>
-
-  <section id="brunch" class="alt">
-    <div class="wrap">
-      <div class="head">
-        <p class="eyebrow">À mesa</p>
-        <h2>Menu do brunch</h2>
-      </div>
+  <section class="section invite-only" id="cardapio" aria-labelledby="t-menu">
+    <div class="paper">
+      <p class="eyebrow">À mesa</p>
+      <h2 id="t-menu">Café da manhã</h2>
       <div class="menu">
         <div class="course">
           <h3>Para começar</h3>
           <ul>
             <li>Pão de queijo mineiro saído do forno</li>
-            <li>Tábua de frutas da estação<small>morango, mexerica, mamão e uva</small></li>
+            <li>Frutas da estação<small>morango, mexerica, mamão e uva</small></li>
             <li>Iogurte natural com granola da casa e mel</li>
           </ul>
         </div>
-        <hr>
         <div class="course">
           <h3>Do forno e da chapa</h3>
           <ul>
             <li>Ovos mexidos cremosos com ervas</li>
             <li>Quiche de alho-poró e queijo canastra</li>
-            <li>Croissant com presunto cru e queijo brie</li>
-            <li>Panqueca americana com frutas vermelhas<small>opção vegetariana</small></li>
+            <li>Croissant com presunto cru e brie</li>
+            <li>Panqueca com frutas vermelhas<small>opção vegetariana</small></li>
           </ul>
         </div>
-        <hr>
         <div class="course">
           <h3>Doces</h3>
           <ul>
@@ -414,7 +322,6 @@ body.admin .hero, body.admin main, body.admin footer { display: none; }
             <li>Mini churros com doce de leite</li>
           </ul>
         </div>
-        <hr>
         <div class="course">
           <h3>Para beber</h3>
           <ul>
@@ -424,126 +331,119 @@ body.admin .hero, body.admin main, body.admin footer { display: none; }
           </ul>
         </div>
       </div>
-      <p class="note">Cardápio de exemplo, a ser substituído pelo menu do buffet.</p>
+      <p class="sample-note">Cardápio de exemplo, a ser trocado pelo menu do buffet.</p>
     </div>
   </section>
 
-  <section id="rsvp">
-    <div class="wrap">
-      <div class="head">
-        <p class="eyebrow">Responda até 14 de julho de 2027</p>
-        <h2>Confirme sua presença</h2>
-        <p class="lede">Busque pelo seu nome e sobrenome, do jeito que está no convite. Sua resposta vai direto para os noivos.</p>
+  <section class="section rsvp invite-only" id="rsvp" aria-labelledby="t-rsvp">
+    <div class="paper">
+      <div id="rsvp-intro">
+        <h2 id="t-rsvp">Vai ser especial celebrar este dia na sua companhia</h2>
+        <div class="rule" aria-hidden="true"></div>
+        <button class="button" type="button" id="rsvp-open" aria-controls="rsvp-form" aria-expanded="false">Confirmar presença</button>
       </div>
-      <form id="rsvp-form" novalidate>
-        <div class="field">
-          <label for="c-name">Seu nome e sobrenome</label>
+      <form id="rsvp-form" novalidate hidden>
+        <p class="lead">Busque seu nome do jeito que está no convite.</p>
+        <div>
+          <label for="c-name">Nome e sobrenome</label>
           <div class="search">
-            <input type="text" id="c-name" autocomplete="name" placeholder="Ex.: Gabriel Pereira">
-            <button class="btn" type="button" id="c-btn">Buscar</button>
+            <input type="text" id="c-name" autocomplete="name" placeholder="Ex.: Ana Pereira">
+            <button class="button" type="button" id="c-btn">Buscar</button>
           </div>
         </div>
-        <p class="err" id="c-err" role="alert" hidden></p>
+        <p class="msg err" id="c-err" role="alert" hidden></p>
         <div id="found" class="found" hidden>
           <h3 id="r-greet"></h3>
           <div class="people" id="r-people"></div>
           <label class="person none"><input type="checkbox" id="r-none"> Ninguém poderá comparecer</label>
         </div>
-        <p class="err" id="r-err" role="alert" hidden>Marque quem vai, ou "Ninguém poderá comparecer".</p>
-        <div class="btns">
-          <button class="btn solid" type="submit" id="r-send" disabled>Confirmar presença</button>
-        </div>
-        <p class="status ok" id="r-status" role="status"></p>
+        <p class="msg err" id="r-err" role="alert" hidden>Marque quem vai, ou "Ninguém poderá comparecer".</p>
+        <div class="actions"><button class="button" type="submit" id="r-send" disabled>Confirmar presença</button></div>
+        <p class="msg ok" id="r-status" role="status"></p>
       </form>
     </div>
   </section>
-</main>
 
-<section id="noivos" hidden aria-labelledby="nv-title">
-  <div class="wrap">
-    <div class="head">
+  <section id="noivos" hidden aria-labelledby="nv-title">
+    <div class="admin-head">
+      <a href="#" id="nav-back">← Voltar ao convite</a>
+    </div>
+    <div class="paper">
       <p class="eyebrow">Área dos noivos</p>
       <h2 id="nv-title">Lista de presença</h2>
-    </div>
+      <div class="rule" aria-hidden="true" style="margin-left:0"></div>
 
-    <div class="gate" id="g-loading">
-      <p>Verificando acesso…</p>
-    </div>
+      <div class="gate" id="g-loading"><p>Verificando acesso…</p></div>
 
-    <div class="gate" id="g-login" hidden>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg>
-      <h3>Área reservada aos noivos</h3>
-      <form id="lg-form" novalidate>
-        <div class="field"><label for="lg-email">E-mail</label><input type="email" id="lg-email" autocomplete="username"></div>
-        <div class="field"><label for="lg-pass">Senha</label><input type="password" id="lg-pass" autocomplete="current-password"></div>
-        <p class="err" id="lg-err" role="alert" hidden></p>
-        <div class="btns"><button class="btn solid" type="submit" id="lg-btn">Entrar</button></div>
-      </form>
-    </div>
-
-    <div class="gate" id="g-denied" hidden>
-      <h3>Esta conta não tem acesso</h3>
-      <p>Entre com o e-mail dos noivos.</p>
-      <button class="btn" type="button" id="g-out">Sair</button>
-    </div>
-
-    <div class="gate" id="g-error" hidden>
-      <h3>Não foi possível carregar os dados</h3>
-      <p id="g-error-msg">Tente recarregar a página em instantes.</p>
-    </div>
-
-    <div class="dash" id="dash" hidden>
-      <div class="who"><span id="who-email"></span><button type="button" id="who-out">Sair</button></div>
-      <div class="summary">
-        <div class="stats">
-          <div class="stat"><b id="s-total">0</b><span>convidados</span></div>
-          <div class="stat vai"><b id="s-vai">0</b><span>confirmados</span></div>
-          <div class="stat nao"><b id="s-nao">0</b><span>não vão</span></div>
-          <div class="stat"><b id="s-pend">0</b><span>aguardando</span></div>
-        </div>
-        <div class="bar" aria-hidden="true"><i class="b-vai" id="b-vai"></i><i class="b-nao" id="b-nao"></i></div>
-        <p id="s-line"></p>
-        <p class="err" id="d-note" role="status" hidden></p>
+      <div class="gate" id="g-login" hidden>
+        <h3>Área reservada aos noivos</h3>
+        <form id="lg-form" novalidate>
+          <div class="field"><label for="lg-email">E-mail</label><input type="email" id="lg-email" autocomplete="username"></div>
+          <div class="field"><label for="lg-pass">Senha</label><input type="password" id="lg-pass" autocomplete="current-password"></div>
+          <p class="err" id="lg-err" role="alert" hidden></p>
+          <div><button class="button" type="submit" id="lg-btn">Entrar</button></div>
+        </form>
       </div>
 
-      <div class="tools">
+      <div class="gate" id="g-denied" hidden>
+        <h3>Esta conta não tem acesso</h3>
+        <p>Entre com o e-mail dos noivos.</p>
+        <button class="button ghost" type="button" id="g-out">Sair</button>
+      </div>
+
+      <div class="gate" id="g-error" hidden>
+        <h3>Não foi possível carregar os dados</h3>
+        <p id="g-error-msg">Tente recarregar a página em instantes.</p>
+      </div>
+
+      <div class="dash" id="dash" hidden>
+        <div class="who"><span id="who-email"></span><button type="button" id="who-out">Sair</button></div>
+        <div class="summary">
+          <div class="stats">
+            <div class="stat"><b id="s-total">0</b><span>Convidados</span></div>
+            <div class="stat vai"><b id="s-vai">0</b><span>Confirmados</span></div>
+            <div class="stat nao"><b id="s-nao">0</b><span>Não vão</span></div>
+            <div class="stat"><b id="s-pend">0</b><span>Aguardando</span></div>
+          </div>
+          <div class="bar" aria-hidden="true"><i class="b-vai" id="b-vai"></i><i class="b-nao" id="b-nao"></i></div>
+          <p id="s-line"></p>
+          <p class="err" id="d-note" role="status" hidden></p>
+        </div>
+
         <details class="tool" id="t-new">
           <summary>Novo convite</summary>
           <div class="body">
-            <p class="hint">Um nome por linha. Se a pessoa estiver só com o primeiro nome, a busca usa o sobrenome do convite (ex.: "Gabriel" em "Família Pereira" é achado como "Gabriel Pereira"). As confirmações feitas no site aparecem aqui sozinhas.</p>
+            <p class="hint">Um nome por linha. Se a pessoa estiver só com o primeiro nome, a busca usa o sobrenome do convite ("Gabriel" em "Família Pereira" é achado como "Gabriel Pereira"). As confirmações feitas no site aparecem aqui sozinhas.</p>
             <div class="field"><label for="n-name">Nome do convite</label><input type="text" id="n-name" placeholder="Ex.: Família Pereira"></div>
             <div class="field"><label for="n-ppl">Pessoas no convite</label><textarea id="n-ppl" rows="4" placeholder="Gabriel Pereira&#10;Ana Pereira"></textarea></div>
             <p class="err" id="n-err" hidden></p>
-            <div class="btns"><button class="btn solid" type="button" id="n-save">Cadastrar</button></div>
+            <div><button class="button" type="button" id="n-save">Cadastrar</button></div>
           </div>
         </details>
-      </div>
 
-      <div class="listhead">
-        <div class="search"><input type="search" id="l-q" placeholder="Buscar convite ou pessoa" aria-label="Buscar convite ou pessoa"></div>
-        <div class="filters" role="group" aria-label="Filtrar convites">
-          <button type="button" data-f="todos" aria-pressed="true">Todos<span id="f-todos">0</span></button>
-          <button type="button" data-f="vai" aria-pressed="false">Confirmados<span id="f-vai">0</span></button>
-          <button type="button" data-f="nao" aria-pressed="false">Não vão<span id="f-nao">0</span></button>
-          <button type="button" data-f="pend" aria-pressed="false">Aguardando<span id="f-pend">0</span></button>
+        <div class="listhead">
+          <input type="search" id="l-q" placeholder="Buscar convite ou pessoa" aria-label="Buscar convite ou pessoa">
+          <div class="filters" role="group" aria-label="Filtrar convites">
+            <button type="button" data-f="todos" aria-pressed="true">Todos<span id="f-todos">0</span></button>
+            <button type="button" data-f="vai" aria-pressed="false">Confirmados<span id="f-vai">0</span></button>
+            <button type="button" data-f="nao" aria-pressed="false">Não vão<span id="f-nao">0</span></button>
+            <button type="button" data-f="pend" aria-pressed="false">Aguardando<span id="f-pend">0</span></button>
+          </div>
+          <p class="legend">Para ajustar à mão, toque no nome: aguardando → vai → não vai.</p>
         </div>
-        <p class="legend">Confirmações do site entram sozinhas. Para ajustar à mão, toque no nome: aguardando → vai → não vai.</p>
+
+        <div class="invs" id="l-list"></div>
+
+        <div class="btns" id="x-row" hidden><button class="button ghost small" type="button" id="x-csv">Baixar lista (CSV)</button></div>
       </div>
-
-      <div class="invs" id="l-list"></div>
-
-      <div class="btns" id="x-row" hidden><button class="btn" type="button" id="x-csv">Baixar lista (CSV)</button></div>
     </div>
-  </div>
-</section>
+  </section>
 
-<footer>
-  <div class="wrap">
-    <p class="mono">A &amp; D</p>
-    <p>14 de agosto de 2027 · Sousas, Campinas</p>
-    <a class="admin-link" href="#noivos">Área dos noivos</a>
-  </div>
-</footer>
+  <footer>
+    <span>Anna &amp; Doug · 2027</span>
+    <a href="#noivos" id="nav-owner" class="invite-only">Área dos noivos</a>
+  </footer>
+</main>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
@@ -577,17 +477,16 @@ const toDate = v => v && typeof v.toDate === "function" ? v.toDate() : (v ? new 
 
 // ---------- Contagem regressiva ----------
 (function countdown() {
-  const els = ["d", "h", "m", "s"].map(k => $("cd-" + k));
+  const els = ["d", "h", "m"].map(k => $("cd-" + k));
   const pad = n => String(n).padStart(2, "0");
   function tick() {
     let diff = Math.max(0, WEDDING - Date.now());
     const d = Math.floor(diff / 864e5); diff -= d * 864e5;
     const h = Math.floor(diff / 36e5); diff -= h * 36e5;
     const m = Math.floor(diff / 6e4); diff -= m * 6e4;
-    const s = Math.floor(diff / 1e3);
-    els[0].textContent = d; els[1].textContent = pad(h); els[2].textContent = pad(m); els[3].textContent = pad(s);
+    els[0].textContent = d; els[1].textContent = pad(h); els[2].textContent = pad(m);
   }
-  tick(); setInterval(tick, 1000);
+  tick(); setInterval(tick, 15000);
 })();
 
 // ---------- Chaves de busca ----------
@@ -669,6 +568,12 @@ async function idFor(key) {
     $("r-none").checked = false; $("found").hidden = false; refresh();
   }
 
+  // O botão do convite abre o formulário de busca no próprio papel azul.
+  $("rsvp-open").addEventListener("click", () => {
+    $("rsvp-intro").hidden = true; form.hidden = false;
+    $("rsvp-open").setAttribute("aria-expanded", "true");
+    $("c-name").focus();
+  });
   btn.addEventListener("click", search);
   $("c-name").addEventListener("keydown", e => { if (e.key === "Enter") { e.preventDefault(); search(); } });
   $("c-name").addEventListener("input", () => { if (invite || !$("c-err").hidden) { reset(); showErr(""); } });
@@ -752,7 +657,6 @@ async function idFor(key) {
 
   onAuthStateChanged(auth, user => {
     unsubs.forEach(u => u()); unsubs = []; docs = []; started = false;
-    $("nav-owner").hidden = !user;
     if (!user) { gate("g-login"); return; }
     $("who-email").textContent = user.email || "";
     gate("g-loading");
@@ -897,7 +801,7 @@ async function idFor(key) {
     const nameIn = el("input", { type: "text", value: inv.nome || "" });
     const pplIn = el("textarea", { value: (inv.pessoas || []).map(p => p.nome).join("\n"), rows: Math.max(3, n) });
     const editErr = el("p", { className: "err", hidden: true });
-    const saveP = el("button", { type: "button", className: "btn small", textContent: "Salvar alterações" });
+    const saveP = el("button", { type: "button", className: "button small ghost", textContent: "Salvar alterações" });
     saveP.onclick = () => {
       const nome = nameIn.value.trim();
       const names = pplIn.value.split(/\r?\n|,/).map(s => s.trim()).filter(Boolean);
@@ -916,11 +820,11 @@ async function idFor(key) {
       editErr, el("div", { className: "btns" }, saveP));
     let unlock = null;
     if (respostas[inv.id]) {
-      unlock = el("button", { type: "button", className: "btn small", textContent: "Liberar nova resposta" });
+      unlock = el("button", { type: "button", className: "button small ghost", textContent: "Liberar nova resposta" });
       unlock.title = "O convite já respondeu pelo site. Liberar deixa responder de novo.";
       unlock.onclick = () => write(inv.id, () => deleteDoc(doc(db, "respostas", inv.id))).then(() => toast("Convite liberado para responder de novo."));
     }
-    const del = el("button", { type: "button", className: "btn small danger", textContent: "Excluir convite" });
+    const del = el("button", { type: "button", className: "button small danger", textContent: "Excluir convite" });
     let armed = false, armTimer;
     del.onclick = () => {
       if (!armed) { armed = true; del.classList.add("armed"); del.textContent = "Toque de novo para excluir"; armTimer = setTimeout(() => { armed = false; del.classList.remove("armed"); del.textContent = "Excluir convite"; }, 4000); return; }
@@ -985,7 +889,7 @@ async function idFor(key) {
       const em = toDate(d.respondidoEm);
       rows.push([d.nome, p.nome, label[p.status] || "Aguardando", d.respondidoPor, em && !isNaN(em) ? fmtDate(em) : "", d.notas]);
     }));
-    const blob = new Blob(["\uFEFF" + rows.map(r => r.map(q).join(";")).join("\r\n")], { type: "text/csv;charset=utf-8" });
+    const blob = new Blob(["﻿" + rows.map(r => r.map(q).join(";")).join("\r\n")], { type: "text/csv;charset=utf-8" });
     const a = el("a", { href: URL.createObjectURL(blob), download: "lista-de-presenca.csv" });
     document.body.append(a); a.click(); a.remove();
   };
